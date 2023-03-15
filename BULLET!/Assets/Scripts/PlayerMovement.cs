@@ -4,45 +4,29 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float playerSpeed = 800.0f;
-    float jumpForce =  200.0f;
+    float playerSpeed = 500.0f;
+    float jumpForce =  1300.0f;
     Rigidbody2D playerRb;
-    Vector2 movement;
-    float jumpInput;
-    bool isGrounded = true;
-    bool isJumping = false;
+    [SerializeField] Vector2 movement;
+    bool justJumped = false;
     bool facingRight = true;
-    float maxVelocity = 5.0f;
-
-
-
     SpriteRenderer playerSr;
+    [SerializeField] LayerMask plataformPlayerMask;
+    Collider2D playerCollider;
 
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
         playerSr = GetComponent<SpriteRenderer>();
+        playerCollider = GetComponent<Collider2D>();
     }
 
     void Update()
     {
-        movement = new Vector2(Input.GetAxis("Horizontal"), 0);
+        movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxis("Vertical"));
 
-        jumpInput = Input.GetAxis("Vertical");
-
-        if(jumpInput >= 0.95f){
-
-            jumpInput = 1.0f;
-
-        } else if (jumpInput < 0.15f){
-
-            jumpInput = 0.15f;
-            
-        }
-
-        if (Input.GetButtonUp("Jump")) {
-
-            isJumping = true;
+        if (!justJumped && Input.GetButtonUp("Jump") && IsGrounded()) {
+            justJumped = true;
 
         }
 
@@ -55,30 +39,21 @@ public class PlayerMovement : MonoBehaviour
         Move(movement);
 
         // Jump player
-        if (isJumping) {
-            Jump();
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.tag == "Ground"){
-
-            isGrounded = true;
-
+        if (justJumped) {
+            Jump(movement);
         }
     }
 
     void Move(Vector2 direction){
-
-        playerRb.AddForce(direction * playerSpeed * Time.deltaTime);
-
-        CheckVelocity();
+        playerRb.velocity = new Vector2(playerSpeed * direction.x * Time.deltaTime, playerRb.velocity.y);
     }
 
-    void Jump(){
-        isJumping = false;
-        isGrounded = false;
-        playerRb.AddForce(Vector2.up * jumpInput * jumpForce * Time.deltaTime, ForceMode2D.Impulse);
+    void Jump(Vector2 direction){
+        justJumped = false;
+        if(direction.y <= 0.6f){
+            direction.y = 0.6f;
+        }
+        playerRb.velocity = (Vector2.up *  jumpForce * direction.y * Time.deltaTime); 
     }
 
     void Flip(bool orientation){
@@ -100,15 +75,8 @@ public class PlayerMovement : MonoBehaviour
         return facingRight;
     }
 
-    void CheckVelocity(){
-         if(playerRb.velocity.x >= maxVelocity) {
-
-            playerRb.velocity = new Vector2 (maxVelocity, playerRb.velocity.y);
-
-        } else if (playerRb.velocity.x <= -maxVelocity){
-
-            playerRb.velocity = new Vector2 (-maxVelocity, playerRb.velocity.y);
-
-        }       
+    bool IsGrounded(){
+        RaycastHit2D groundRayCast = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0f, Vector2.down, .1f, plataformPlayerMask);
+        return groundRayCast.collider != null;
     }
 }

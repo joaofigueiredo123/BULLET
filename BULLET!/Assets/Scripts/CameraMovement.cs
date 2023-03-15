@@ -4,13 +4,45 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    [SerializeField] GameObject playerReference;
+    Vector3 initialCameraOffset;
+    float cameraOffsetTresholdX = 3.0f;
+    float cameraOffsetTresholdY = 1.0f;
+    float zAxisCameraOffset = -15.0f;
     void Start()
     {
-        
+        initialCameraOffset = new Vector3 (0.0f, 5.0f, zAxisCameraOffset);
+        transform.position = playerReference.transform.position + initialCameraOffset;
     }
 
     void Update()
     {
-        
+        HandleCameraMovementX();
+        HandleCameraMovementY();
+    }
+
+    void HandleCameraMovementX(){
+
+        if(playerReference.transform.position.x - transform.position.x > cameraOffsetTresholdX){
+
+            transform.position = new Vector3 (playerReference.transform.position.x - cameraOffsetTresholdX, transform.position.y, transform.position.z);
+
+        } else if (playerReference.transform.position.x - transform.position.x < -cameraOffsetTresholdX){
+
+            transform.position = new Vector3 (playerReference.transform.position.x + cameraOffsetTresholdX, transform.position.y, transform.position.z);
+
+        }
+    }
+    void HandleCameraMovementY(){
+
+        if(playerReference.transform.position.y - transform.position.y > cameraOffsetTresholdY){
+
+            transform.position = new Vector3 (transform.position.x, playerReference.transform.position.y - cameraOffsetTresholdY, transform.position.z);
+
+        } else if (playerReference.transform.position.y - transform.position.y < -cameraOffsetTresholdY){
+
+            transform.position = new Vector3 (transform.position.x, playerReference.transform.position.y + cameraOffsetTresholdY, transform.position.z);
+
+        }
     }
 }
