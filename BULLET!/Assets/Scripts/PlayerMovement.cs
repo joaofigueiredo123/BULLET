@@ -5,19 +5,19 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     float playerSpeed = 500.0f;
-    float jumpForce =  1300.0f;
+    float jumpForce = 1300.0f;
     Rigidbody2D playerRb;
     [SerializeField] Vector2 movement;
     bool justJumped = false;
     bool facingRight = true;
-    SpriteRenderer playerSr;
+    // SpriteRenderer playerSr;
     [SerializeField] LayerMask plataformPlayerMask;
     Collider2D playerCollider;
 
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
-        playerSr = GetComponent<SpriteRenderer>();
+        // playerSr = GetComponent<SpriteRenderer>();
         playerCollider = GetComponent<Collider2D>();
     }
 
@@ -25,57 +25,68 @@ public class PlayerMovement : MonoBehaviour
     {
         movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxis("Vertical"));
 
-        if (!justJumped && Input.GetButtonUp("Jump") && IsGrounded()) {
+        if (!justJumped && Input.GetButtonUp("Jump") && IsGrounded())
+        {
             justJumped = true;
 
         }
 
         // Flip player
-        Flip(CheckDirection());
+        CheckDirection();
     }
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         // Move player
         Move(movement);
 
         // Jump player
-        if (justJumped) {
+        if (justJumped)
+        {
             Jump(movement);
         }
     }
 
-    void Move(Vector2 direction){
+    void Move(Vector2 direction)
+    {
         playerRb.velocity = new Vector2(playerSpeed * direction.x * Time.deltaTime, playerRb.velocity.y);
     }
 
-    void Jump(Vector2 direction){
+    void Jump(Vector2 direction)
+    {
         justJumped = false;
-        if(direction.y <= 0.6f){
+        if (direction.y <= 0.6f)
+        {
             direction.y = 0.6f;
         }
-        playerRb.velocity = (Vector2.up *  jumpForce * direction.y * Time.deltaTime); 
+        playerRb.velocity = (Vector2.up * jumpForce * direction.y * Time.deltaTime);
     }
 
-    void Flip(bool orientation){
-        playerSr.flipX = !orientation;
+    void Flip()
+    {
+        transform.Rotate(0, 180, 0);
     }
 
-    bool CheckDirection(){
-        if(Input.GetKeyDown(KeyCode.A)){
-
+    bool CheckDirection()
+    {
+        if (Input.GetKeyDown(KeyCode.A) && facingRight)
+        {
             // Player is now facing LEFT
+            Flip();
             facingRight = false;
-
-        } else if (Input.GetKeyDown(KeyCode.D)){
-
+        }
+        else if (Input.GetKeyDown(KeyCode.D) && !facingRight)
+        {
             // Player is now facing RIGHT
+            Flip();
             facingRight = true;
 
         }
         return facingRight;
     }
 
-    bool IsGrounded(){
+    bool IsGrounded()
+    {
         RaycastHit2D groundRayCast = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0f, Vector2.down, .1f, plataformPlayerMask);
         return groundRayCast.collider != null;
     }

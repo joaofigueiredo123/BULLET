@@ -5,21 +5,21 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField] GameObject playerReference;
-    PlayerCollisions playerCollisionsReference;
+    Player playerScriptReference;
     Vector3 initialCameraOffset;
     float cameraOffsetTresholdX = 3.0f;
-    float cameraOffsetTresholdY = 1.0f;
+    float cameraOffsetTresholdY = 3.0f;
     float zAxisCameraOffset = -15.0f;
     void Start()
     {
-        playerCollisionsReference = playerReference.GetComponent<PlayerCollisions>();
+        playerScriptReference = playerReference.GetComponent<Player>();
         initialCameraOffset = new Vector3 (0.0f, 5.0f, zAxisCameraOffset);
         transform.position = playerReference.transform.position + initialCameraOffset;
     }
 
     void Update()
     {
-        if(!playerCollisionsReference.isDead){
+        if(!playerScriptReference.isDead){
             HandleCameraMovementX();
             HandleCameraMovementY();
         }

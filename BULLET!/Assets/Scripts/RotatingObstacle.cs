@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class RotatingObstacle : MonoBehaviour
 {
-    float sawRPS = 3.0f;
+    [SerializeField] float sawRPS;
+    public int damage = 100;
     void Update()
     {
         transform.Rotate(0, 0, -360.0f * sawRPS * Time.deltaTime);

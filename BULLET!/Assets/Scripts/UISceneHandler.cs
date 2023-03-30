@@ -5,22 +5,42 @@ public class UISceneHandler : MonoBehaviour
 {
     public static UISceneHandler instance { get; private set; }
 
-    private void Awake() {
-        if(instance != null) {
+    private void Awake()
+    {
+        if (instance != null)
+        {
             Debug.LogError("Foi encontrada mais do que uma instância de UISceneHandler na cena.");
         }
         instance = this;
     }
 
-    public void PlayGame(){
-        EditorSceneManager.LoadScene("Game");
+    public static void SceneMainMenu()
+    {
+        // MainMenu
+        EditorSceneManager.LoadScene(0);
     }
 
-    public void Settings(){
-        EditorSceneManager.LoadScene("Settings");
+    public static void SceneSaves()
+    {
+        // Saves
+        EditorSceneManager.LoadScene(1);
     }
 
-    public void Saves(){
-        EditorSceneManager.LoadScene("Saves");
+    public static void SceneCharacters()
+    {
+        // Characters
+        EditorSceneManager.LoadScene(2);
+    }
+
+    public static void SceneGame()
+    {
+        // Game
+        EditorSceneManager.LoadScene(3);
+    }
+
+    public static void SceneSettings()
+    {
+        // Settings
+        EditorSceneManager.LoadScene(4);
     }
 }
