@@ -7,12 +7,17 @@ public class FireWeapon : MonoBehaviour
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] int fireForce;
-
+    int currentBulletCount;
+    void Start() {
+        
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Fire();
+            if(currentBulletCount > 0){
+                Fire();
+            }
         }
     }
 

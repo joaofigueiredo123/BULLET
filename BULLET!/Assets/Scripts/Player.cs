@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.TryGetComponent<RotatingObstacle>(out RotatingObstacle rotatingObstacleScript))
         {
             Die();
+            return;
         }
     }
 
