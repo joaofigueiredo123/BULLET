@@ -68,7 +68,7 @@ public class PickupSystem : MonoBehaviour
 
     void UpdateCoins()
     {
-        playerUICanvas.UpdateCoinCount();
+        playerUICanvas.UpdateCoinCount(1);
     }
 
 }

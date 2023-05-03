@@ -6,16 +6,18 @@ using TMPro;
 public class PlayerUICanvasHandler : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI healthCountText, bulletCountText, coinCountText;
+    public int coinCount = 0;
     private void Start() {
-        coinCountText.text = "Moedas: 0";
+        UpdateCoinCount(0);
     }
     public void UpdateBulletCount(int currentBulletCount, int magSize)
     {
         bulletCountText.text = currentBulletCount + "/" + magSize;
     }
 
-    public void UpdateCoinCount(){
-        coinCountText.text = "Moedas: "; 
+    public void UpdateCoinCount(int count){
+        coinCount = coinCount + count;
+        coinCountText.text = "Moedas: " + coinCount; 
     }
 
     public void UpdateHealthCount()
