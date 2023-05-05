@@ -7,14 +7,13 @@ public class Weapon : MonoBehaviour
     PlayerUICanvasHandler playerUICanvas;
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject bulletPrefab;
-    [SerializeField] int fireForce;
-    public string weaponName;
-    public int magSize, currentBulletCount;
-    public float fireRate;
-    [SerializeField] float initialFireRate;
+    [SerializeField] int fireForce, magSize;
+    int currentBulletCount;
+    [SerializeField] float fireRate, initialFireRate;
     void Start()
     {
         playerUICanvas = GameObject.Find("PlayerUICanvas").GetComponent<PlayerUICanvasHandler>();
+        currentBulletCount = magSize;
     }
     void Update()
     {
@@ -32,8 +31,6 @@ public class Weapon : MonoBehaviour
         {
             fireRate -= Time.deltaTime;
         }
-
-        gameObject.name = weaponName;
     }
 
     void Fire()
@@ -42,6 +39,6 @@ public class Weapon : MonoBehaviour
         bullet.GetComponent<Rigidbody2D>().AddForce(transform.right * fireForce, ForceMode2D.Impulse);
         currentBulletCount--;
         fireRate = initialFireRate;
-        playerUICanvas.UpdateBulletCount(currentBulletCount, magSize);
+        // playerUICanvas.UpdateBulletCount(magSize);
     }
 }

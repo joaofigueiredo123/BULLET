@@ -5,11 +5,15 @@ using UnityEngine;
 public class PickupSystem : MonoBehaviour
 {
     PlayerUICanvasHandler playerUICanvas;
-    Weapon weapon;
+    [SerializeField] private GameObject ak47;
+    [SerializeField] private GameObject p90;
+    [SerializeField] private GameObject awp;
+    [SerializeField] private GameObject hand;
+    GameObject weaponPickedUp;
+
     private void Start()
     {
         playerUICanvas = GameObject.Find("PlayerUICanvas").GetComponent<PlayerUICanvasHandler>();
-        weapon = GameObject.Find("Weapon").GetComponent<Weapon>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -17,7 +21,7 @@ public class PickupSystem : MonoBehaviour
         {
             if ((int)pickup.pickupType == 0)
             {
-                UpdateWeapon();
+                SetWeapon();
 
                 Destroy(other.gameObject);
                 return;
@@ -34,36 +38,32 @@ public class PickupSystem : MonoBehaviour
         }
     }
 
-    void UpdateWeapon()
+    void SetWeapon()
     {
         int randomWeaponIndex = Random.Range(0, 3);
 
         switch (randomWeaponIndex)
         {
             case 0:
-                SetWeapon("AK47", 30, 0.2f);
+                GenerateWeapon(ak47);
                 break;
 
             case 1:
-                SetWeapon("P90", 50, 0.07f);
+                GenerateWeapon(p90);
                 break;
 
             case 2:
-                SetWeapon("KATANA", 0, 1);
+                GenerateWeapon(awp);
                 break;
 
             default:
                 break;
         }
     }
-    void SetWeapon(string weaponName, int magSize, float fireRate)
+    void GenerateWeapon(GameObject weapon)
     {
-        Debug.Log("picked up " + weaponName);
-        weapon.weaponName = weaponName;
-        weapon.magSize = magSize;
-        weapon.currentBulletCount = magSize;
-        weapon.fireRate = fireRate;
-        playerUICanvas.UpdateBulletCount(magSize,magSize);
+        weaponPickedUp = Instantiate(weapon, hand.transform.position, hand.transform.rotation);
+        weaponPickedUp.transform.parent = hand.transform;
     }
 
     void UpdateCoins()

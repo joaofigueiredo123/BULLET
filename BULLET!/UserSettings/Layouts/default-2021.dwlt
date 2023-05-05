@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 32
+  controlID: 102
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -312,7 +312,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 378
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
@@ -349,9 +349,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 245e0000
-      m_LastClickedID: 24100
-      m_ExpandedIDs: 2cfbffff9c5d0000245e00002c5e0000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 2cfbffff9c5d0000365e0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -655,9 +655,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 3.1312635, y: 3.345939, z: -0.02390461}
+    m_Target: {x: 0.8396054, y: 3.6489103, z: -0.03465046}
     speed: 2
-    m_Value: {x: 3.1312635, y: 3.345939, z: -0.02390461}
+    m_Value: {x: -1.6632437, y: 3.8266943, z: -0.012512996}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -708,9 +708,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 5.6526327
+    m_Target: 6.7272196
     speed: 2
-    m_Value: 5.6526327
+    m_Value: 1.9654403
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -868,22 +868,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Prefabs/Weapons
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Prefabs/Weapons
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Administrador\Desktop\PAP\BULLET!
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 23}
-    m_SelectedIDs: 64600000
-    m_LastClickedID: 24676
-    m_ExpandedIDs: 00000000426000004460000046600000486000004a6000004c6000004e60000050600000526000006260000000ca9a3b
+    scrollPos: {x: 0, y: 39}
+    m_SelectedIDs: b8730000
+    m_LastClickedID: 29624
+    m_ExpandedIDs: 000000004c6000004e60000050600000526000005460000056600000586000005a6000005c6000006c6000007860000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -911,7 +911,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000426000004460000046600000486000004a6000004c6000004e6000005060000052600000
+    m_ExpandedIDs: 000000004c6000004e60000050600000526000005460000056600000586000005a6000005c600000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

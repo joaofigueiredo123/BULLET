@@ -10,9 +10,9 @@ public class PlayerUICanvasHandler : MonoBehaviour
     private void Start() {
         UpdateCoinCount(0);
     }
-    public void UpdateBulletCount(int currentBulletCount, int magSize)
+    public void UpdateBulletCount(int magSize)
     {
-        bulletCountText.text = currentBulletCount + "/" + magSize;
+        // bulletCountText.text = currentBulletCount + "/" + magSize;
     }
 
     public void UpdateCoinCount(int count){
