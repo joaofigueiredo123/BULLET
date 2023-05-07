@@ -42,9 +42,9 @@ GameObject:
   - component: {fileID: 5852586899341264832}
   - component: {fileID: 6590086956085613487}
   - component: {fileID: 4800724029407463145}
-  - component: {fileID: -1776361812709141722}
+  - component: {fileID: 653351412190995552}
   m_Layer: 0
-  m_Name: AK47
+  m_Name: AWP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,7 +108,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -132,15 +132,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 2587774024667856834}
   bulletPrefab: {fileID: 2271106173317451551, guid: a9159b7cbf5a9144290cac04954db129, type: 3}
-  weaponName: AK47
-  fireForce: 50
-  magSize: 30
-  damage: 25
-  fireRate: 0.2
-  initialFireRate: 0.2
-  weaponSoundClip: {fileID: 8300000, guid: b5533fc31bd703547847e56a30175db6, type: 3}
+  weaponName: AWP
+  fireForce: 125
+  magSize: 5
+  damage: 101
+  fireRate: 1
+  initialFireRate: 1
+  weaponSoundClip: {fileID: 8300000, guid: 3f767055f27524b4dad68443281ddcc4, type: 3}
   emptyMagSoundClip: {fileID: 8300000, guid: ad7421be564bd8e41815e1b8e6858f3b, type: 3}
---- !u!82 &-1776361812709141722
+--- !u!82 &653351412190995552
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,7 +150,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b5533fc31bd703547847e56a30175db6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3f767055f27524b4dad68443281ddcc4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

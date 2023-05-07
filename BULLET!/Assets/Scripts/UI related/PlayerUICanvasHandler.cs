@@ -7,17 +7,19 @@ public class PlayerUICanvasHandler : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI healthCountText, bulletCountText, coinCountText;
     public int coinCount = 0;
-    private void Start() {
+    private void Start()
+    {
         UpdateCoinCount(0);
     }
-    public void UpdateBulletCount(int magSize)
+    public void UpdateBulletCount(int currentBulletCount, int magSize)
     {
-        // bulletCountText.text = currentBulletCount + "/" + magSize;
+        bulletCountText.text = currentBulletCount + "/" + magSize;
     }
 
-    public void UpdateCoinCount(int count){
+    public void UpdateCoinCount(int count)
+    {
         coinCount = coinCount + count;
-        coinCountText.text = "Moedas: " + coinCount; 
+        coinCountText.text = "Moedas: " + coinCount;
     }
 
     public void UpdateHealthCount()
