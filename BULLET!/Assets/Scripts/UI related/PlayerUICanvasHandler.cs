@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor.SceneManagement;
 
 public class PlayerUICanvasHandler : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI healthCountText, bulletCountText, coinCountText;
+    [SerializeField] GameObject gameOverUI, mainGameUI;
     public int coinCount = 0;
     private void Start()
     {
@@ -19,11 +21,20 @@ public class PlayerUICanvasHandler : MonoBehaviour
     public void UpdateCoinCount(int count)
     {
         coinCount = coinCount + count;
-        coinCountText.text = "Moedas: " + coinCount;
+        coinCountText.text = "x" + coinCount;
     }
 
     public void UpdateHealthCount()
     {
 
+    }
+
+    public void GameOver(){
+        mainGameUI.SetActive(false);
+        gameOverUI.SetActive(true);
+    }
+
+    public void RestartLevel(){
+        EditorSceneManager.LoadScene(3);
     }
 }

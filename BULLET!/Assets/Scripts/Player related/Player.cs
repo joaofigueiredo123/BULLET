@@ -5,12 +5,15 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] int maxHealth, health;
+    PlayerUICanvasHandler playerUI;
     Rigidbody2D playerRb;
+    
     public bool isDead = false;
 
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
+        playerUI = GameObject.Find("PlayerUICanvas").GetComponent<PlayerUICanvasHandler>();
         health = maxHealth;
     }
 
@@ -36,8 +39,9 @@ public class Player : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Player is now, DEAD!");
         isDead = true;
+        playerUI.GameOver();
+        Debug.Log("Player is now, DEAD!");
         Destroy(gameObject);
     }
 }

@@ -13,9 +13,12 @@ public class PlayerMovement : MonoBehaviour
     // SpriteRenderer playerSr;
     [SerializeField] LayerMask plataformPlayerMask;
     Collider2D playerCollider;
+    AudioSource playerAudio;
+    [SerializeField] AudioClip playerJumpSound;
 
     void Start()
     {
+        playerAudio = GetComponent<AudioSource>();
         playerRb = GetComponent<Rigidbody2D>();
         // playerSr = GetComponent<SpriteRenderer>();
         playerCollider = GetComponent<Collider2D>();
@@ -43,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
         // Jump player
         if (justJumped)
         {
+            playerAudio.PlayOneShot(playerJumpSound, 1.0f);
             Jump(movement);
         }
     }
