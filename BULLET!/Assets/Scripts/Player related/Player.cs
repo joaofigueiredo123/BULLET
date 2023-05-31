@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] int maxHealth, health;
     PlayerUICanvasHandler playerUI;
     Rigidbody2D playerRb;
-    
+
     public bool isDead = false;
 
     void Start()

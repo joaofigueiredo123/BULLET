@@ -19,6 +19,8 @@ public class PickupSystem : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent<Pickup>(out Pickup pickup))
         {
+            pickup.PlayPickupSound();
+
             if ((int)pickup.pickupType == 0)
             {
 
