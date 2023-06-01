@@ -45,6 +45,11 @@ public class Weapon : MonoBehaviour
         {
             fireRate -= Time.deltaTime;
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Reload();
+        }
     }
 
     void Fire()
@@ -59,6 +64,12 @@ public class Weapon : MonoBehaviour
         bullet.GetComponent<Rigidbody2D>().AddForce(transform.right * fireForce, ForceMode2D.Impulse);
         bullet.GetComponent<Bullet>().damage = damage;
         currentBulletCount--;
+        playerUICanvas.UpdateBulletCount(currentBulletCount, magSize);
+    }
+
+    void Reload()
+    {
+        currentBulletCount = magSize;
         playerUICanvas.UpdateBulletCount(currentBulletCount, magSize);
     }
 }
