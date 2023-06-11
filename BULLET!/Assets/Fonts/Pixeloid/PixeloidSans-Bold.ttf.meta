@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: ee1b751476e25194eb0d6ed29a211c38
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Pixeloid Sans
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: f174fa93eee98c24d9b4bac7637cbf5f, type: 3}
+  - {fileID: 12800000, guid: a2167a9f3bdcd024cb337ba10667fbf1, type: 3}
+  - {fileID: 12800000, guid: 59b9c9b6e7f71854d9ef774267519c16, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

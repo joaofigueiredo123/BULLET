@@ -7,7 +7,7 @@ using UnityEditor.SceneManagement;
 public class PlayerUICanvasHandler : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI healthCountText, bulletCountText, coinCountText;
-    [SerializeField] GameObject gameOverUI, mainGameUI;
+    [SerializeField] GameObject gameOverUI, mainGameUI, weaponAmmoUI;
     public int coinCount = 0;
     private void Start()
     {
@@ -21,7 +21,7 @@ public class PlayerUICanvasHandler : MonoBehaviour
     public void UpdateCoinCount(int count)
     {
         coinCount = coinCount + count;
-        coinCountText.text = "x" + coinCount;
+        coinCountText.text = "x" + coinCount.ToString();
     }
 
     public void UpdateHealthCount()
@@ -29,12 +29,19 @@ public class PlayerUICanvasHandler : MonoBehaviour
 
     }
 
-    public void GameOver(){
+    public void GameOver()
+    {
         mainGameUI.SetActive(false);
         gameOverUI.SetActive(true);
     }
 
-    public void RestartLevel(){
+    public void RestartLevel()
+    {
         EditorSceneManager.LoadScene(3);
+    }
+
+    public void EnableWeaponAmmoUI(bool state)
+    {
+        weaponAmmoUI.SetActive(state);
     }
 }

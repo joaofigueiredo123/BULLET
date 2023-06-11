@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float playerSpeed = 500.0f;
-    float jumpForce = 1300.0f;
+    float playerSpeed = 425.0f;
+    float jumpForce = 1230.0f;
     Rigidbody2D playerRb;
     [SerializeField] Vector2 movement;
     bool justJumped = false;

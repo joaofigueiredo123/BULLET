@@ -43,6 +43,7 @@ public class PickupSystem : MonoBehaviour
                 }
 
                 SetWeapon();
+                playerUICanvas.EnableWeaponAmmoUI(true);
 
                 Destroy(other.gameObject);
                 return;

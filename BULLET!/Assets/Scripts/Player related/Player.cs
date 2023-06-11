@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<RotatingObstacle>(out RotatingObstacle rotatingObstacleScript))
+        if (collision.gameObject.TryGetComponent<Obstacle>(out Obstacle obstacleScript))
         {
             Die();
             return;

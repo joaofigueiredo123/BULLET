@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3525920293131178913}
   - component: {fileID: 9214192785198941595}
   - component: {fileID: 2973596199581481647}
+  - component: {fileID: 1499549101836458521}
   - component: {fileID: 1217224848769585204}
   m_Layer: 0
   m_Name: coin-pickup
@@ -101,6 +102,25 @@ MonoBehaviour:
   pickupType: 1
   pickupSound: {fileID: 8300000, guid: 6990245985016004b9bbe9173ec39526, type: 3}
   playerSoundSource: {fileID: 0}
+--- !u!114 &1499549101836458521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5745542322082145280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33fbcd00851a574194ef4bd58f0b83b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verticalSpeed: 0.1
+  horizontalSpeed: 0.2
+  rotatingSpeed: 75
+  topBoundry: 0.1
+  bottomBoundry: 0.1
+  leftBoundry: 0.05
+  rightBoundry: 0.05
 --- !u!61 &1217224848769585204
 BoxCollider2D:
   m_ObjectHideFlags: 0

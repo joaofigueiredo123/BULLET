@@ -43,4 +43,10 @@ public class UISceneHandler : MonoBehaviour
         // Settings
         EditorSceneManager.LoadScene(4);
     }
+
+    public static void SceneStatistics(){
+        
+        // Statistics
+        EditorSceneManager.LoadScene(5);
+    }
 }
