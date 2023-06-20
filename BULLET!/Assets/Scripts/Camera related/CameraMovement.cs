@@ -9,9 +9,9 @@ public class CameraMovement : MonoBehaviour
     Vector3 initialCameraOffset;
     float cameraOffsetTresholdX = 3.0f;
     float cameraOffsetTresholdY = 3.0f;
-    [SerializeField] float xAxisCameraOffset = 0.0f;
-    [SerializeField] float yAxisCameraOffset = 5.0f;
-    [SerializeField] float zAxisCameraOffset = -6.0f;
+    [SerializeField] float xAxisCameraOffset;
+    [SerializeField] float yAxisCameraOffset;
+    [SerializeField] float zAxisCameraOffset;
     void Start()
     {
         playerScriptReference = playerReference.GetComponent<Player>();

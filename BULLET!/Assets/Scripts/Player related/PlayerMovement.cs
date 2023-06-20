@@ -16,8 +16,11 @@ public class PlayerMovement : MonoBehaviour
     AudioSource playerAudio;
     [SerializeField] AudioClip playerJumpSound;
 
+    Animator playerAnim;
+
     void Start()
     {
+        playerAnim = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
         playerRb = GetComponent<Rigidbody2D>();
         // playerSr = GetComponent<SpriteRenderer>();
@@ -34,6 +37,14 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
+        if (movement.x == 0)
+        {
+            playerAnim.SetBool("isWalking", false);
+        }
+        else
+        {
+            playerAnim.SetBool("isWalking", true);
+        }
         // Flip player
         CheckDirection();
     }
@@ -54,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
     void Move(Vector2 direction)
     {
         playerRb.velocity = new Vector2(playerSpeed * direction.x * Time.deltaTime, playerRb.velocity.y);
+
     }
 
     void Jump(Vector2 direction)

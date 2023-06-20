@@ -151,7 +151,7 @@ public class HandleGameData : MonoBehaviour
     public void SelectCharacter()
     {
         GameObject.Find("DDOLIds").GetComponent<SaveIDs>().characterID = characterID;
-        GameObject.Find("ChractersCanvas").GetComponent<CharacterMenuUIHandler>().DisableCharactersCardsEnablePlayerNameUI();
+        GameObject.Find("CharactersCanvas").GetComponent<CharacterMenuUIHandler>().DisableCharactersCardsEnablePlayerNameUI();
     }
 
 

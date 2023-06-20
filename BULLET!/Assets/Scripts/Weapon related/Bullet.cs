@@ -22,7 +22,8 @@ public class Bullet : MonoBehaviour
         {
             enemyScript.TakeDamage(damage);
         }
-        // Debug.Log("Bullet collided with " + collision.gameObject.name);
+        
+        Debug.Log("Bullet collided with " + collision.gameObject.name);
         Destroy(gameObject);
     }
 
