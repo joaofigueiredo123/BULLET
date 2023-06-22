@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    [SerializeField] float damage;
+    public int damage;
     void Start()
     {
         

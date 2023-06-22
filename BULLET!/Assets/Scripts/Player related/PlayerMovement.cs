@@ -15,50 +15,58 @@ public class PlayerMovement : MonoBehaviour
     Collider2D playerCollider;
     AudioSource playerAudio;
     [SerializeField] AudioClip playerJumpSound;
+    Player playerInstance;
 
     Animator playerAnim;
 
     void Start()
     {
+        playerInstance = GetComponent<Player>();
         playerAnim = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
         playerRb = GetComponent<Rigidbody2D>();
-        // playerSr = GetComponent<SpriteRenderer>();
         playerCollider = GetComponent<Collider2D>();
     }
 
     void Update()
     {
-        movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxis("Vertical"));
-
-        if (!justJumped && Input.GetButtonUp("Jump") && IsGrounded())
+        if (!playerInstance.isDead)
         {
-            justJumped = true;
+            movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxis("Vertical"));
 
-        }
+            if (!justJumped && Input.GetButtonUp("Jump") && IsGrounded())
+            {
+                justJumped = true;
 
-        if (movement.x == 0)
-        {
-            playerAnim.SetBool("isWalking", false);
+            }
+
+            if (movement.x == 0)
+            {
+                playerAnim.SetBool("isWalking", false);
+            }
+            else
+            {
+                playerAnim.SetBool("isWalking", true);
+            }
+
+            // Flip player
+            CheckDirection();
         }
-        else
-        {
-            playerAnim.SetBool("isWalking", true);
-        }
-        // Flip player
-        CheckDirection();
     }
 
     void FixedUpdate()
     {
-        // Move player
-        Move(movement);
-
-        // Jump player
-        if (justJumped)
+        if (!playerInstance.isDead)
         {
-            playerAudio.PlayOneShot(playerJumpSound, 1.0f);
-            Jump(movement);
+            // Move player
+            Move(movement);
+
+            // Jump player
+            if (justJumped)
+            {
+                playerAudio.PlayOneShot(playerJumpSound, 1.0f);
+                Jump(movement);
+            }
         }
     }
 

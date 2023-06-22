@@ -7,11 +7,13 @@ public class Player : MonoBehaviour
     [SerializeField] int maxHealth, health;
     PlayerUICanvasHandler playerUI;
     Rigidbody2D playerRb;
+    Animator playerAnim;
 
     public bool isDead = false;
 
     void Start()
     {
+        playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody2D>();
         playerUI = GameObject.Find("PlayerUICanvas").GetComponent<PlayerUICanvasHandler>();
         health = maxHealth;
@@ -21,15 +23,18 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<Obstacle>(out Obstacle obstacleScript))
         {
-            Die();
-            return;
+            TakeDamage(obstacleScript.damage);
         }
+
+        Debug.Log("player collided with: " + collision.gameObject.name);
     }
 
     public void TakeDamage(int damageAmmount)
     {
 
         health -= damageAmmount;
+
+        playerUI.UpdateHealthCount(health);
 
         if (health <= 0)
         {
@@ -40,8 +45,10 @@ public class Player : MonoBehaviour
     void Die()
     {
         isDead = true;
+        playerAnim.SetBool("isDead", true);
         playerUI.GameOver();
         Debug.Log("Player is now, DEAD!");
-        Destroy(gameObject);
+        Destroy(GameObject.Find("Hand"));
     }
+
 }

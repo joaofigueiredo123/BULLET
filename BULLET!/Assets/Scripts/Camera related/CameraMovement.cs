@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    [SerializeField] GameObject playerReference;
+    GameObject playerReference;
     Player playerScriptReference;
     Vector3 initialCameraOffset;
-    float cameraOffsetTresholdX = 3.0f;
-    float cameraOffsetTresholdY = 3.0f;
-    [SerializeField] float xAxisCameraOffset;
-    [SerializeField] float yAxisCameraOffset;
-    [SerializeField] float zAxisCameraOffset;
+    [SerializeField] float yAxisCameraOffset, zAxisCameraOffset, cameraOffsetTresholdX, cameraOffsetTresholdY;
     void Start()
     {
+        playerReference = GameObject.Find("Player");
         playerScriptReference = playerReference.GetComponent<Player>();
-        initialCameraOffset = new Vector3(xAxisCameraOffset, yAxisCameraOffset, zAxisCameraOffset);
+        initialCameraOffset = new Vector3(0, yAxisCameraOffset, zAxisCameraOffset);
         transform.position = playerReference.transform.position + initialCameraOffset;
     }
 
