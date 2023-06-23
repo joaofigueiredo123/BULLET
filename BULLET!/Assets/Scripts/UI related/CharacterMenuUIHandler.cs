@@ -7,6 +7,7 @@ public class CharacterMenuUIHandler : MonoBehaviour
 {
     int savefileID;
     int characterID;
+    int level;
     string playerName;
     [SerializeField] GameObject characterCards;
     [SerializeField] GameObject playerNameUI;
@@ -26,7 +27,7 @@ public class CharacterMenuUIHandler : MonoBehaviour
         savefileID = GameObject.Find("DDOLIds").GetComponent<SaveIDs>().savefileID;
         characterID = GameObject.Find("DDOLIds").GetComponent<SaveIDs>().characterID;
         playerName = GameObject.Find("PlayerName_InputField").GetComponent<TMP_InputField>().text;
-        HandleGameData.InsertSaveFileData(savefileID, characterID, playerName, 0, "", 0);
-        UISceneHandler.SceneGame();
+        HandleGameData.InsertSaveFileData(savefileID, characterID, playerName, 0, 0, 1);
+        UISceneHandler.SceneLevelMenu();
     }
 }

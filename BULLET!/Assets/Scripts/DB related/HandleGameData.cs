@@ -7,7 +7,6 @@ using UnityEngine;
 using Mono.Data.Sqlite;
 using System.Data;
 using System.IO;
-using TMPro;
 public class HandleGameData : MonoBehaviour
 {
     // public static HandleGameData instance {get; private set;}
@@ -33,6 +32,7 @@ public class HandleGameData : MonoBehaviour
             Debug.Log("Creating data base...");
             CreateDataBase();
             GameObject.Find("DDOLIds").GetComponent<SaveIDs>().savefileID = savefileID;
+            GameObject.Find("DDOLIds").GetComponent<SaveIDs>().level = 1;
             UISceneHandler.SceneCharacters();
         }
         else if (File.Exists(@"gameDB.db"))
@@ -41,6 +41,7 @@ public class HandleGameData : MonoBehaviour
             {
                 Debug.Log("Data base is already created...");
                 GameObject.Find("DDOLIds").GetComponent<SaveIDs>().savefileID = savefileID;
+                GameObject.Find("DDOLIds").GetComponent<SaveIDs>().level = 1;
                 UISceneHandler.SceneCharacters();
 
             }
@@ -48,7 +49,7 @@ public class HandleGameData : MonoBehaviour
             {
                 Debug.Log("Save file already exists, so loading data...");
                 LoadSaveFileData(savefileID);
-                UISceneHandler.SceneGame();
+                UISceneHandler.SceneLevelMenu();
             }
         }
     }
@@ -58,7 +59,7 @@ public class HandleGameData : MonoBehaviour
         IDbConnection dbConnection = OpenConnection();
 
         IDbCommand query = dbConnection.CreateCommand();
-        string query_CreateTableSaveFiles = "CREATE TABLE IF NOT EXISTS save_files(id INTEGER PRIMARY KEY, id_char INTEGER, username VARCHAR(30), playtime INTEGER, stage VARCHAR(30), coins INTEGER);";
+        string query_CreateTableSaveFiles = "CREATE TABLE IF NOT EXISTS save_files(id INTEGER PRIMARY KEY, id_char INTEGER, username VARCHAR(30), playtime INTEGER, coins INTEGER, level INTEGER);";
         query.CommandText = query_CreateTableSaveFiles;
         query.ExecuteReader();
 
@@ -72,24 +73,37 @@ public class HandleGameData : MonoBehaviour
         dbConnection.Close();
     }
 
-    public static void InsertSaveFileData(int savefileID, int characterID, string username, int playtime, string stage, int coins)
+    public static void InsertSaveFileData(int savefileID, int characterID, string username, int playtime, int coins, int level)
     {
         IDbConnection dbConnection = OpenConnection();
 
         IDbCommand query = dbConnection.CreateCommand();
-        query.CommandText = "INSERT INTO save_files(id, id_char, username, playtime, stage, coins) VALUES (@savefileID, @characterID, @username, @playtime, @stage, @coins)";
+        query.CommandText = "INSERT INTO save_files(id, id_char, username, playtime, coins, level) VALUES (@savefileID, @characterID, @username, @playtime, @coins, @level)";
         query.Parameters.Add(new SqliteParameter("@savefileID", savefileID));
         query.Parameters.Add(new SqliteParameter("@characterID", characterID));
         query.Parameters.Add(new SqliteParameter("@username", username));
         query.Parameters.Add(new SqliteParameter("@playtime", playtime));
-        query.Parameters.Add(new SqliteParameter("@stage", stage));
         query.Parameters.Add(new SqliteParameter("@coins", coins));
+        query.Parameters.Add(new SqliteParameter("@level", level));
         query.ExecuteNonQuery();
 
         dbConnection.Close();
     }
     private void LoadSaveFileData(int savefileID)
     {
+        IDbConnection dbConnection = OpenConnection();
+
+        IDbCommand query = dbConnection.CreateCommand();
+        string query_VerifyExistance = "SELECT id_char, level FROM save_files WHERE id = " + savefileID + "";
+        query.CommandText = query_VerifyExistance;
+        IDataReader reader = query.ExecuteReader();
+
+        int char_id = Convert.ToInt32(reader[0]);
+        int level = Convert.ToInt32(reader[1]);
+
+        GameObject.Find("DDOLIds").GetComponent<SaveIDs>().savefileID = savefileID;
+        GameObject.Find("DDOLIds").GetComponent<SaveIDs>().characterID = char_id;
+        GameObject.Find("DDOLIds").GetComponent<SaveIDs>().level = level;
     }
 
     private void UpdateGameData(string username, int playtime, string stage, int coins)

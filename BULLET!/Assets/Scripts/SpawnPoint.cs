@@ -7,15 +7,16 @@ public class SpawnPoint : MonoBehaviour
     [SerializeField] GameObject[] characters;
     void Awake()
     {
-        SpawnPlayer();
+        int index = GameObject.Find("DDOLIds").GetComponent<SaveIDs>().characterID - 1;
+        SpawnPlayer(index);
     }
-    void Start() {
-        
+    void Start()
+    {
     }
 
-    void SpawnPlayer()
+    void SpawnPlayer(int index)
     {
-        GameObject player = Instantiate(characters[0], transform.position, characters[0].transform.rotation);
-        player.name = player.name.Replace("(Clone)","");
+        GameObject player = Instantiate(characters[index], transform.position, characters[index].transform.rotation);
+        player.name = player.name.Replace(" " + (index + 1) + "(Clone)", "");
     }
 }

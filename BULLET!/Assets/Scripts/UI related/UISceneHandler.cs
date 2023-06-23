@@ -32,21 +32,38 @@ public class UISceneHandler : MonoBehaviour
         EditorSceneManager.LoadScene(2);
     }
 
-    public static void SceneGame()
-    {
-        // Game
-        EditorSceneManager.LoadScene(3);
-    }
-
     public static void SceneSettings()
     {
         // Settings
-        EditorSceneManager.LoadScene(4);
+        EditorSceneManager.LoadScene(3);
     }
 
     public static void SceneStatistics(){
         
         // Statistics
+        EditorSceneManager.LoadScene(4);
+    }
+
+    public static void SceneLevelMenu(){
+        
+        // Levels menu
         EditorSceneManager.LoadScene(5);
     }
+
+    public static void SceneLevel1(){
+        
+        // Level 1
+        EditorSceneManager.LoadScene("Level 1");
+    }
+    public static void SceneLevel2(){
+        
+        // Level 2
+        EditorSceneManager.LoadScene("Level 2");
+    }
+    public static void SceneLevel3(){
+        
+        // Level 3
+        EditorSceneManager.LoadScene("Level 3");
+    }
+    
 }

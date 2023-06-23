@@ -7,6 +7,7 @@ public class SaveIDs : MonoBehaviour
     public static SaveIDs instance { get; private set; }
     public int savefileID;
     public int characterID;
+    public int level;
 
     private void Awake()
     {
