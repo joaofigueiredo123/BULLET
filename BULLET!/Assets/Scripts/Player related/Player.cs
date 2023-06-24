@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
 
     void Die()
     {
+        GetComponent<PlayerMovement>().enabled = false;
         isDead = true;
         playerAnim.SetBool("isDead", true);
         playerUI.GameOver();

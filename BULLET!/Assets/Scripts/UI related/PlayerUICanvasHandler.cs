@@ -7,7 +7,7 @@ using DG.Tweening;
 
 public class PlayerUICanvasHandler : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI healthCountText, bulletCountText, coinCountText;
+    [SerializeField] TextMeshProUGUI bulletCountText, coinCountText;
     [SerializeField] GameObject gameOverUI, mainGameUI, weaponAmmoUI;
     [SerializeField] GameObject[] hearthContainers, emptyHearthContainers; 
     public int coinCount = 0;
@@ -65,13 +65,12 @@ public class PlayerUICanvasHandler : MonoBehaviour
 
     public void GameOver()
     {
-        mainGameUI.SetActive(false);
         gameOverUI.SetActive(true);
     }
 
     public void RestartLevel()
     {
-        EditorSceneManager.LoadScene(3);
+        EditorSceneManager.LoadScene(EditorSceneManager.GetActiveScene().buildIndex);
     }
 
     public void EnableWeaponAmmoUI(bool state)

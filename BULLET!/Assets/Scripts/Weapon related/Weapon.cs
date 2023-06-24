@@ -10,11 +10,13 @@ public class Weapon : MonoBehaviour
     [SerializeField] string weaponName;
     [SerializeField] int fireForce, magSize, damage;
     int currentBulletCount;
-    [SerializeField] float fireRate, initialFireRate;
+    [SerializeField] float fireRate, initialFireRate, reloadTime, audioClipLength;
     AudioSource weaponSoundSource;
-    [SerializeField] AudioClip weaponSoundClip, emptyMagSoundClip;
+    [SerializeField] AudioClip weaponSoundClip, emptyMagSoundClip, reloadSoundClip;
+    bool isReloading = false;
     void Start()
     {
+        audioClipLength = weaponSoundClip.length;
         weaponSoundSource = GetComponent<AudioSource>();
         playerUICanvas = GameObject.Find("PlayerUICanvas").GetComponent<PlayerUICanvasHandler>();
         gameObject.name = weaponName;
@@ -23,42 +25,40 @@ public class Weapon : MonoBehaviour
     }
     void Update()
     {
-        if (fireRate <= 0)
+        if (!isReloading)
         {
-            if (Input.GetKey(KeyCode.Mouse0))
+
+            if (fireRate <= 0)
             {
-                if (currentBulletCount > 0)
+                if (Input.GetKey(KeyCode.Mouse0))
                 {
-                    Fire();
-                    return;
-                }
+                    if (currentBulletCount > 0)
+                    {
+                        Fire();
+                        return;
+                    }
 
-                if (weaponSoundSource.isPlaying)
-                {
-                    weaponSoundSource.Stop();
+                    if (!weaponSoundSource.isPlaying)
+                    {
+                        weaponSoundSource.PlayOneShot(emptyMagSoundClip, 0.8f);
+                    }
                 }
-
-                weaponSoundSource.PlayOneShot(emptyMagSoundClip);
             }
-        }
-        else
-        {
-            fireRate -= Time.deltaTime;
+            else
+            {
+                fireRate -= Time.deltaTime;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Reload();
+            StartCoroutine(Reload());
         }
     }
 
     void Fire()
     {
-        if (weaponSoundSource.isPlaying)
-        {
-            weaponSoundSource.Stop();
-        }
-        weaponSoundSource.PlayOneShot(weaponSoundClip);
+        StartCoroutine(PlayWeaponSound(weaponSoundClip));
         fireRate = initialFireRate;
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         bullet.GetComponent<Rigidbody2D>().AddForce(transform.right * fireForce, ForceMode2D.Impulse);
@@ -67,9 +67,20 @@ public class Weapon : MonoBehaviour
         playerUICanvas.UpdateBulletCount(currentBulletCount, magSize);
     }
 
-    void Reload()
+    IEnumerator Reload()
     {
+        isReloading = true;
+        weaponSoundSource.PlayOneShot(reloadSoundClip, 0.3f);
+        yield return new WaitForSecondsRealtime(reloadTime);
         currentBulletCount = magSize;
         playerUICanvas.UpdateBulletCount(currentBulletCount, magSize);
+        isReloading = false;
     }
+
+    IEnumerator PlayWeaponSound(AudioClip weaponSound)
+    {
+        weaponSoundSource.PlayOneShot(weaponSound, 0.85f);
+        yield return new WaitForSecondsRealtime(weaponSound.length);
+    }
+
 }

@@ -7,7 +7,7 @@ public class PickupSystem : MonoBehaviour
     PlayerUICanvasHandler playerUICanvas;
     [SerializeField] private GameObject ak47;
     [SerializeField] private GameObject p90;
-    [SerializeField] private GameObject awp;
+    // [SerializeField] private GameObject awp;
     [SerializeField] private GameObject hand;
     GameObject weaponPickedUp;
 
@@ -62,7 +62,7 @@ public class PickupSystem : MonoBehaviour
 
     void SetWeapon()
     {
-        int randomWeaponIndex = Random.Range(0, 3);
+        int randomWeaponIndex = Random.Range(0, 2);
 
         switch (randomWeaponIndex)
         {
@@ -74,9 +74,9 @@ public class PickupSystem : MonoBehaviour
                 GenerateWeapon(p90);
                 break;
 
-            case 2:
-                GenerateWeapon(awp);
-                break;
+            // case 2:
+            //     GenerateWeapon(awp);
+            //     break;
 
             default:
                 break;

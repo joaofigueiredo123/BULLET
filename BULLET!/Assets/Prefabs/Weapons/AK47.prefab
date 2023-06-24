@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2041155480709734392}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.248, y: 0.369, z: 0}
+  m_LocalPosition: {x: 4.89, y: 1.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -107,7 +107,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: d06c555a59530214a98d98f7d30ce6d7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 641af3125151d9d4a9dd792e0e0e307a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -131,15 +131,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 2587774024667856834}
-  bulletPrefab: {fileID: 2271106173317451551, guid: a9159b7cbf5a9144290cac04954db129, type: 3}
+  bulletPrefab: {fileID: 2271106173317451551, guid: 134ae6e82605b124e812a93dee3686cb, type: 3}
   weaponName: AK47
   fireForce: 50
   magSize: 30
-  damage: 25
+  damage: 15
   fireRate: 0.2
   initialFireRate: 0.2
+  reloadTime: 3
+  audioClipLength: 0
   weaponSoundClip: {fileID: 8300000, guid: b5533fc31bd703547847e56a30175db6, type: 3}
   emptyMagSoundClip: {fileID: 8300000, guid: ad7421be564bd8e41815e1b8e6858f3b, type: 3}
+  reloadSoundClip: {fileID: 8300000, guid: 0148ec72cc3650e4996dc8b531ba8587, type: 3}
 --- !u!82 &-1776361812709141722
 AudioSource:
   m_ObjectHideFlags: 0

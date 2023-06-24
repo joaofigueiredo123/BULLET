@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float playerSpeed = 425.0f;
+    float playerSpeed = 385.0f;
     float jumpForce = 1230.0f;
     Rigidbody2D playerRb;
-    [SerializeField] Vector2 movement;
+    [SerializeField] Vector2 movement, jumpDirection;
     bool justJumped = false;
     bool facingRight = true;
     // SpriteRenderer playerSr;
@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
         {
             direction.y = 0.6f;
         }
-        playerRb.velocity = (Vector2.up * jumpForce * direction.y * Time.deltaTime);
+        playerRb.velocity = (jumpDirection * jumpForce * direction.y * Time.deltaTime);
     }
 
     void Flip()
