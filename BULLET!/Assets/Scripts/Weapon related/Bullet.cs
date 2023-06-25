@@ -6,7 +6,8 @@ public class Bullet : MonoBehaviour
 {
     public int damage = 1;
     [SerializeField] float leftLimit, rightLimit, upLimit, downLimit;
-    private void Start() {
+    private void Start()
+    {
     }
     private void Update()
     {
@@ -16,14 +17,15 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemyScript))
+        if (other.gameObject.TryGetComponent<Enemy>(out Enemy enemyScript))
         {
             enemyScript.TakeDamage(damage);
         }
-        
-        Debug.Log("Bullet collided with " + collision.gameObject.name);
+
+        Debug.Log("Bullet collided with " + other.gameObject.name);
         Destroy(gameObject);
     }
 

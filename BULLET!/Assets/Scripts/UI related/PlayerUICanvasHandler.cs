@@ -9,7 +9,8 @@ public class PlayerUICanvasHandler : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI bulletCountText, coinCountText;
     [SerializeField] GameObject gameOverUI, mainGameUI, weaponAmmoUI;
-    [SerializeField] GameObject[] hearthContainers, emptyHearthContainers; 
+    [SerializeField] GameObject[] hearthContainers, emptyHearthContainers;
+    [SerializeField] GameObject[] powerupIcons;
     public int coinCount = 0;
     private void Start()
     {
@@ -78,5 +79,10 @@ public class PlayerUICanvasHandler : MonoBehaviour
         weaponAmmoUI.SetActive(state);
     }
 
-    
+    public void EnablePowerupUI(int index, bool state)
+    {
+        powerupIcons[index].SetActive(state);
+    }
+
+
 }

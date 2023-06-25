@@ -5,19 +5,18 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     float playerSpeed = 385.0f;
-    float jumpForce = 1230.0f;
+    float jumpForce = 1260.0f;
     Rigidbody2D playerRb;
     [SerializeField] Vector2 movement, jumpDirection;
     bool justJumped = false;
     bool facingRight = true;
-    // SpriteRenderer playerSr;
     [SerializeField] LayerMask plataformPlayerMask;
     Collider2D playerCollider;
     AudioSource playerAudio;
     [SerializeField] AudioClip playerJumpSound;
     Player playerInstance;
-
     Animator playerAnim;
+    [SerializeField] public float speedMultiplier = 1.0f;
 
     void Start()
     {
@@ -64,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
             // Jump player
             if (justJumped)
             {
-                playerAudio.PlayOneShot(playerJumpSound, 1.0f);
+                playerAudio.PlayOneShot(playerJumpSound, 0.6f);
                 Jump(movement);
             }
         }
@@ -72,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Move(Vector2 direction)
     {
-        playerRb.velocity = new Vector2(playerSpeed * direction.x * Time.deltaTime, playerRb.velocity.y);
+        playerRb.velocity = new Vector2(playerSpeed * direction.x * speedMultiplier * Time.deltaTime, playerRb.velocity.y);
 
     }
 
@@ -84,6 +83,8 @@ public class PlayerMovement : MonoBehaviour
             direction.y = 0.6f;
         }
         playerRb.velocity = (jumpDirection * jumpForce * direction.y * Time.deltaTime);
+
+        HandleGameData.UpdateJumpStat(GameObject.Find("DDOLIds").GetComponent<SaveIDs>().savefileID, 1);
     }
 
     void Flip()

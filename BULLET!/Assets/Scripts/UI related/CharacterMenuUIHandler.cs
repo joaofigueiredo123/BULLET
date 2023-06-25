@@ -28,6 +28,7 @@ public class CharacterMenuUIHandler : MonoBehaviour
         characterID = GameObject.Find("DDOLIds").GetComponent<SaveIDs>().characterID;
         playerName = GameObject.Find("PlayerName_InputField").GetComponent<TMP_InputField>().text;
         HandleGameData.InsertSaveFileData(savefileID, characterID, playerName, 0, 0, 1);
+        HandleGameData.InsertStatistics(savefileID, 0, 0, 0, 0, 0);
         UISceneHandler.SceneLevelMenu();
     }
 }

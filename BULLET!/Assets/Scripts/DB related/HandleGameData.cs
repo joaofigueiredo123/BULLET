@@ -68,6 +68,11 @@ public class HandleGameData : MonoBehaviour
         query.CommandText = query_CreateTableCharacters;
         query.ExecuteReader();
 
+        query = dbConnection.CreateCommand();
+        string query_CreateTableStatistics = "CREATE TABLE IF NOT EXISTS stats(id INTEGER PRIMARY KEY, coins INTEGER, kills INTEGER, deaths INTEGER, shots INTEGER, jumps INTEGER);";
+        query.CommandText = query_CreateTableStatistics;
+        query.ExecuteReader();
+
         InsertCharacters();
 
         dbConnection.Close();
@@ -85,6 +90,23 @@ public class HandleGameData : MonoBehaviour
         query.Parameters.Add(new SqliteParameter("@playtime", playtime));
         query.Parameters.Add(new SqliteParameter("@coins", coins));
         query.Parameters.Add(new SqliteParameter("@level", level));
+        query.ExecuteNonQuery();
+
+        dbConnection.Close();
+    }
+
+    public static void InsertStatistics(int savefileID, int coinAmount, int killAmount, int deathAmount, int shotsAmount, int jumpAmount)
+    {
+        IDbConnection dbConnection = OpenConnection();
+
+        IDbCommand query = dbConnection.CreateCommand();
+        query.CommandText = "INSERT INTO stats(id, coins, kills, deaths, shots, jumps) VALUES (@savefileID, @coinAmount, @killAmount, @deathAmount, @shotsAmount, @jumpAmount)";
+        query.Parameters.Add(new SqliteParameter("@savefileID", savefileID));
+        query.Parameters.Add(new SqliteParameter("@coinAmount", coinAmount));
+        query.Parameters.Add(new SqliteParameter("@killAmount", killAmount));
+        query.Parameters.Add(new SqliteParameter("@deathAmount", deathAmount));
+        query.Parameters.Add(new SqliteParameter("@shotsAmount", shotsAmount));
+        query.Parameters.Add(new SqliteParameter("@jumpAmount", jumpAmount));
         query.ExecuteNonQuery();
 
         dbConnection.Close();
@@ -167,6 +189,67 @@ public class HandleGameData : MonoBehaviour
         GameObject.Find("DDOLIds").GetComponent<SaveIDs>().characterID = characterID;
         GameObject.Find("CharactersCanvas").GetComponent<CharacterMenuUIHandler>().DisableCharactersCardsEnablePlayerNameUI();
     }
+
+    public static void UpdateCoinStat(int save_id, int amount)
+    {
+        IDbConnection dbConnection = OpenConnection();
+
+        IDbCommand query = dbConnection.CreateCommand();
+        string query_UpdateCoinStat = "UPDATE stats SET coins = coins + " + amount + " WHERE id = " + save_id + "";
+        query.CommandText = query_UpdateCoinStat;
+        query.ExecuteNonQuery();
+
+        dbConnection.Close();
+    }
+
+    public static void UpdateKillStat(int save_id, int amount)
+    {
+        IDbConnection dbConnection = OpenConnection();
+
+        IDbCommand query = dbConnection.CreateCommand();
+        string query_UpdateKillStat = "UPDATE stats SET kills = kills + " + amount + " WHERE id = " + save_id + "";
+        query.CommandText = query_UpdateKillStat;
+        query.ExecuteNonQuery();
+
+        dbConnection.Close();
+    }
+
+    public static void UpdateDeathStat(int save_id, int amount)
+    {
+        IDbConnection dbConnection = OpenConnection();
+
+        IDbCommand query = dbConnection.CreateCommand();
+        string query_UpdateDeathStat = "UPDATE stats SET deaths = deaths + " + amount + " WHERE id = " + save_id + "";
+        query.CommandText = query_UpdateDeathStat;
+        query.ExecuteNonQuery();
+
+        dbConnection.Close();
+    }
+
+    public static void UpdateShotStat(int save_id, int amount)
+    {
+        IDbConnection dbConnection = OpenConnection();
+
+        IDbCommand query = dbConnection.CreateCommand();
+        string query_UpdateShotStat = "UPDATE stats SET shots = shots + " + amount + " WHERE id = " + save_id + "";
+        query.CommandText = query_UpdateShotStat;
+        query.ExecuteNonQuery();
+
+        dbConnection.Close();
+    }
+
+    public static void UpdateJumpStat(int save_id, int amount)
+    {
+        IDbConnection dbConnection = OpenConnection();
+
+        IDbCommand query = dbConnection.CreateCommand();
+        string query_UpdateJumpStat = "UPDATE stats SET jumps = jumps + " + amount + " WHERE id = " + save_id + "";
+        query.CommandText = query_UpdateJumpStat;
+        query.ExecuteNonQuery();
+
+        dbConnection.Close();
+    }
+
 
 
     private static IDbConnection OpenConnection()

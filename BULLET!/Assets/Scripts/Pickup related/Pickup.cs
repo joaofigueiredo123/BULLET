@@ -5,7 +5,8 @@ using UnityEngine;
 public enum PickupType
 {
     Weapon = 0,
-    Coin = 1
+    Coin = 1,
+    Powerup = 2
 };
 
 public class Pickup : MonoBehaviour

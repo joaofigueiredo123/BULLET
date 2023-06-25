@@ -8,29 +8,42 @@ public class Player : MonoBehaviour
     PlayerUICanvasHandler playerUI;
     Rigidbody2D playerRb;
     Animator playerAnim;
+    [SerializeField] AudioClip gameOverSound, damageSound;
+    AudioSource playerSoundSource;
 
     public bool isDead = false;
+    bool tookDamage = false;
 
     void Start()
     {
+        playerSoundSource = GetComponent<AudioSource>();
         playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody2D>();
         playerUI = GameObject.Find("PlayerUICanvas").GetComponent<PlayerUICanvasHandler>();
         health = maxHealth;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Obstacle>(out Obstacle obstacleScript))
+        if (!isDead && !tookDamage)
         {
-            TakeDamage(obstacleScript.damage);
-        }
+            if (collision.gameObject.TryGetComponent<Obstacle>(out Obstacle obstacleScript))
+            {
+                StartCoroutine(TakeDamage(obstacleScript.damage));
+            }
 
-        Debug.Log("player collided with: " + collision.gameObject.name);
+            if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemyScript))
+            {
+
+                StartCoroutine(TakeDamage(enemyScript.damage));
+            }
+        }
     }
 
-    public void TakeDamage(int damageAmmount)
+    IEnumerator TakeDamage(int damageAmmount)
     {
+        tookDamage = true;
+        playerSoundSource.PlayOneShot(damageSound, 1f);
 
         health -= damageAmmount;
 
@@ -40,16 +53,24 @@ public class Player : MonoBehaviour
         {
             Die();
         }
+        yield return new WaitForSecondsRealtime(2.25f);
+        tookDamage = false;
     }
 
     void Die()
     {
+        if (!isDead)
+        {
+            playerSoundSource.PlayOneShot(gameOverSound, 0.8f);
+        }
         GetComponent<PlayerMovement>().enabled = false;
+        playerRb.velocity = Vector2.zero;
+        playerRb.angularVelocity = 0f;
         isDead = true;
         playerAnim.SetBool("isDead", true);
         playerUI.GameOver();
-        Debug.Log("Player is now, DEAD!");
         Destroy(GameObject.Find("Hand"));
-    }
 
+        HandleGameData.UpdateDeathStat(GameObject.Find("DDOLIds").GetComponent<SaveIDs>().savefileID, 1);
+    }
 }

@@ -7,15 +7,19 @@ public class Weapon : MonoBehaviour
     PlayerUICanvasHandler playerUICanvas;
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject bulletPrefab;
-    [SerializeField] string weaponName;
+    public string weaponName;
     [SerializeField] int fireForce, magSize, damage;
     int currentBulletCount;
     [SerializeField] float fireRate, initialFireRate, reloadTime, audioClipLength;
     AudioSource weaponSoundSource;
     [SerializeField] AudioClip weaponSoundClip, emptyMagSoundClip, reloadSoundClip;
     bool isReloading = false;
+    public int damageMultiplier;
+    public float firerateMultiplier;
     void Start()
     {
+        damageMultiplier = 1;
+        firerateMultiplier = 1.0f;
         audioClipLength = weaponSoundClip.length;
         weaponSoundSource = GetComponent<AudioSource>();
         playerUICanvas = GameObject.Find("PlayerUICanvas").GetComponent<PlayerUICanvasHandler>();
@@ -48,23 +52,26 @@ public class Weapon : MonoBehaviour
             {
                 fireRate -= Time.deltaTime;
             }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                StartCoroutine(Reload());
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            StartCoroutine(Reload());
-        }
     }
 
     void Fire()
     {
         StartCoroutine(PlayWeaponSound(weaponSoundClip));
-        fireRate = initialFireRate;
+        fireRate = initialFireRate / firerateMultiplier;
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         bullet.GetComponent<Rigidbody2D>().AddForce(transform.right * fireForce, ForceMode2D.Impulse);
-        bullet.GetComponent<Bullet>().damage = damage;
+        bullet.GetComponent<Bullet>().damage = damage * damageMultiplier;
         currentBulletCount--;
         playerUICanvas.UpdateBulletCount(currentBulletCount, magSize);
+
+        HandleGameData.UpdateShotStat(GameObject.Find("DDOLIds").GetComponent<SaveIDs>().savefileID, 1);
     }
 
     IEnumerator Reload()

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 162254416279507666}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 162254417223973285}
   - component: {fileID: 162254417223973280}
   - component: {fileID: 162254417223973281}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,8 +64,8 @@ Transform:
   m_GameObject: {fileID: 162254417223973339}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.4553, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.265, y: 0.265, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 162254416279507666}
   m_Father: {fileID: 0}
@@ -155,6 +155,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   health: 0
+  gameOverSound: {fileID: 8300000, guid: ec1d2737fdf380d44902ccba6a775932, type: 3}
+  damageSound: {fileID: 8300000, guid: b596d64a7de10694492bf887264e08d8, type: 3}
   isDead: 0
 --- !u!114 &162254417223973283
 MonoBehaviour:
@@ -201,7 +203,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 162254417223973339}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 99b1a65e6065474498f689c651a3389b, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
