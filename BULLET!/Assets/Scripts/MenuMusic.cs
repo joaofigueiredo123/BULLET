@@ -1,23 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuMusic : MonoBehaviour
 {
     public static MenuMusic instance { get; private set; }
-    [SerializeField] AudioClip menuMusic;
     AudioSource menuMusicAudioSource;
-    void Start()
-    {
-        menuMusicAudioSource = GetComponent<AudioSource>();
-        menuMusicAudioSource.PlayOneShot(menuMusic, 0.1f);
-    }
-
-    void Update()
-    {
-        
-    }
-
+    public float volumeMultiplier, initialVolume;
     private void Awake()
     {
         if (instance != null)
@@ -28,4 +18,16 @@ public class MenuMusic : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(this);
     }
+    void Start()
+    {
+        volumeMultiplier = 10.0f;
+        menuMusicAudioSource = GetComponent<AudioSource>();
+        initialVolume = menuMusicAudioSource.volume;
+    }
+
+    private void Update()
+    {
+        menuMusicAudioSource.volume = initialVolume * (volumeMultiplier / 100);
+    }
+
 }

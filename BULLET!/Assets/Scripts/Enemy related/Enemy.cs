@@ -28,12 +28,12 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         HandleGameData.UpdateKillStat(GameObject.Find("DDOLIds").GetComponent<SaveIDs>().savefileID, 1);
-        
+
         Debug.Log("Enemy killed!");
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionStay2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Spike"))
         {

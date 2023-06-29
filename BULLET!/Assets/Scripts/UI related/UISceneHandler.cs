@@ -38,32 +38,49 @@ public class UISceneHandler : MonoBehaviour
         EditorSceneManager.LoadScene(3);
     }
 
-    public static void SceneStatistics(){
-        
+    public static void SceneStatistics()
+    {
+
         // Statistics
         EditorSceneManager.LoadScene(4);
     }
 
-    public static void SceneLevelMenu(){
-        
-        // Levels menu
-        EditorSceneManager.LoadScene(5);
+    public static void SceneUpgrades()
+    {
+
+        // Statistics
+        EditorSceneManager.LoadScene(7);
     }
 
-    public static void SceneLevel1(){
-        
+    public static void SceneLevelMenu()
+    {
+
+        // Levels menu
+        EditorSceneManager.LoadScene(5);
+        if (!GameObject.Find("MenuMusic").GetComponent<AudioSource>().isPlaying)
+        {
+            GameObject.Find("MenuMusic").GetComponent<AudioSource>().Play();
+        }
+
+    }
+
+    public static void SceneLevel1()
+    {
+
         // Level 1
         EditorSceneManager.LoadScene("Level 1");
     }
-    public static void SceneLevel2(){
-        
+    public static void SceneLevel2()
+    {
+
         // Level 2
         EditorSceneManager.LoadScene("Level 2");
     }
-    public static void SceneLevel3(){
-        
+    public static void SceneLevel3()
+    {
+
         // Level 3
         EditorSceneManager.LoadScene("Level 3");
     }
-    
+
 }

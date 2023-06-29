@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1.0f;
         playerSoundSource = GetComponent<AudioSource>();
         playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody2D>();
@@ -53,7 +54,7 @@ public class Player : MonoBehaviour
         {
             Die();
         }
-        yield return new WaitForSecondsRealtime(2.25f);
+        yield return new WaitForSecondsRealtime(2.10f);
         tookDamage = false;
     }
 

@@ -73,6 +73,11 @@ public class HandleGameData : MonoBehaviour
         query.CommandText = query_CreateTableStatistics;
         query.ExecuteReader();
 
+        query = dbConnection.CreateCommand();
+        string query_Upgrades = "CREATE TABLE IF NOT EXISTS upgrades(id INTEGER PRIMARY KEY, upgrade1_level INTEGER, upgrade2_level INTEGER, upgrade3_level INTEGER, upgrade4_level INTEGER);";
+        query.CommandText = query_Upgrades;
+        query.ExecuteReader();
+
         InsertCharacters();
 
         dbConnection.Close();
@@ -107,6 +112,22 @@ public class HandleGameData : MonoBehaviour
         query.Parameters.Add(new SqliteParameter("@deathAmount", deathAmount));
         query.Parameters.Add(new SqliteParameter("@shotsAmount", shotsAmount));
         query.Parameters.Add(new SqliteParameter("@jumpAmount", jumpAmount));
+        query.ExecuteNonQuery();
+
+        dbConnection.Close();
+    }
+
+    public static void InsertUpgrades(int savefileID, int upgrade1_level, int upgrade2_level, int upgrade3_level, int upgrade4_level)
+    {
+        IDbConnection dbConnection = OpenConnection();
+
+        IDbCommand query = dbConnection.CreateCommand();
+        query.CommandText = "INSERT INTO upgrades(id, upgrade1_level, upgrade2_level, upgrade3_level, upgrade4_level) VALUES (@savefileID, @upgrade1_level, @upgrade2_level, @upgrade3_level, @upgrade4_level)";
+        query.Parameters.Add(new SqliteParameter("@savefileID", savefileID));
+        query.Parameters.Add(new SqliteParameter("@upgrade1_level", upgrade1_level));
+        query.Parameters.Add(new SqliteParameter("@upgrade2_level", upgrade2_level));
+        query.Parameters.Add(new SqliteParameter("@upgrade3_level", upgrade3_level));
+        query.Parameters.Add(new SqliteParameter("@upgrade4_level", upgrade4_level));
         query.ExecuteNonQuery();
 
         dbConnection.Close();

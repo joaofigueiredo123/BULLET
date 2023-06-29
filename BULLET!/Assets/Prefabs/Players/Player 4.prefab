@@ -110,6 +110,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   playerJumpSound: {fileID: 8300000, guid: 9b91385bd238669409faaf784a79bc11, type: 3}
+  speedMultiplier: 1
 --- !u!114 &162254417223973282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,6 +143,7 @@ MonoBehaviour:
   ak47: {fileID: 4920723715002842415, guid: c5cf80cac2ad9364e8bbc9dc262d354b, type: 3}
   p90: {fileID: 4920723715002842415, guid: 11aee03ff04c1f8479580a647631c124, type: 3}
   hand: {fileID: 6771422087508640917}
+  currentWeapon: 
 --- !u!50 &162254417223973336
 Rigidbody2D:
   serializedVersion: 4
@@ -176,7 +178,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00000333786, y: 4.516467}
+  m_Offset: {x: -0.00000333786, y: 4.501297}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -187,7 +189,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.800024, y: 8.964478}
+  m_Size: {x: 2.800024, y: 8.994818}
   m_EdgeRadius: 0
 --- !u!82 &162254417223973280
 AudioSource:

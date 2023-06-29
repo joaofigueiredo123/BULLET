@@ -29,6 +29,7 @@ public class CharacterMenuUIHandler : MonoBehaviour
         playerName = GameObject.Find("PlayerName_InputField").GetComponent<TMP_InputField>().text;
         HandleGameData.InsertSaveFileData(savefileID, characterID, playerName, 0, 0, 1);
         HandleGameData.InsertStatistics(savefileID, 0, 0, 0, 0, 0);
+        HandleGameData.InsertUpgrades(savefileID, 0, 0, 0, 0);
         UISceneHandler.SceneLevelMenu();
     }
 }
