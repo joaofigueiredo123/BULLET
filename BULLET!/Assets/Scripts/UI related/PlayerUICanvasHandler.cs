@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 public class PlayerUICanvasHandler : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI bulletCountText, coinCountText;
     [SerializeField] GameObject gameOverUI, mainGameUI, weaponAmmoUI;
-    [SerializeField] GameObject[] hearthContainers, emptyHearthContainers;
+    [SerializeField] GameObject[] hearthContainers, emptyHearthContainers, containers;
     [SerializeField] GameObject[] powerupIcons;
     public int coinCount = 0;
     private void Start()
@@ -29,9 +29,9 @@ public class PlayerUICanvasHandler : MonoBehaviour
 
     public void UpdateHealthCount(int health)
     {
-        if (health == 0)
+        if (health <= 0)
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 7; i++)
             {
                 hearthContainers[i].SetActive(false);
                 emptyHearthContainers[i].SetActive(true);
@@ -42,25 +42,107 @@ public class PlayerUICanvasHandler : MonoBehaviour
         switch (health)
         {
             case 1:
-                hearthContainers[0].SetActive(true);
-                hearthContainers[1].SetActive(false);
-                hearthContainers[2].SetActive(false);
-
-                emptyHearthContainers[0].SetActive(false);
-                emptyHearthContainers[1].SetActive(true);
-                emptyHearthContainers[2].SetActive(true);
+                for (int i = 0; i < 1; i++)
+                {
+                    hearthContainers[i].SetActive(true);
+                    emptyHearthContainers[i].SetActive(false);
+                }
+                for (int i = 1; i < 7; i++)
+                {
+                    hearthContainers[i].SetActive(false);
+                    emptyHearthContainers[i].SetActive(true);
+                }
                 break;
+
             case 2:
-                hearthContainers[0].SetActive(true);
-                hearthContainers[1].SetActive(true);
-                hearthContainers[2].SetActive(false);
-
-                emptyHearthContainers[0].SetActive(false);
-                emptyHearthContainers[1].SetActive(false);
-                emptyHearthContainers[2].SetActive(true);
+                for (int i = 0; i < 2; i++)
+                {
+                    hearthContainers[i].SetActive(true);
+                    emptyHearthContainers[i].SetActive(false);
+                }
+                for (int i = 2; i < 7; i++)
+                {
+                    hearthContainers[i].SetActive(false);
+                    emptyHearthContainers[i].SetActive(true);
+                }
                 break;
+
+            case 3:
+                for (int i = 0; i < 3; i++)
+                {
+                    hearthContainers[i].SetActive(true);
+                    emptyHearthContainers[i].SetActive(false);
+                }
+                for (int i = 3; i < 7; i++)
+                {
+                    hearthContainers[i].SetActive(false);
+                    emptyHearthContainers[i].SetActive(true);
+                }
+                break;
+
+            case 4:
+                for (int i = 0; i < 4; i++)
+                {
+                    hearthContainers[i].SetActive(true);
+                    emptyHearthContainers[i].SetActive(false);
+                }
+                for (int i = 4; i < 7; i++)
+                {
+                    hearthContainers[i].SetActive(false);
+                    emptyHearthContainers[i].SetActive(true);
+                }
+                break;
+
+            case 5:
+                for (int i = 0; i < 5; i++)
+                {
+                    hearthContainers[i].SetActive(true);
+                    emptyHearthContainers[i].SetActive(false);
+                }
+                for (int i = 5; i < 7; i++)
+                {
+                    hearthContainers[i].SetActive(false);
+                    emptyHearthContainers[i].SetActive(true);
+                }
+                break;
+
+            case 6:
+                for (int i = 0; i < 6; i++)
+                {
+                    hearthContainers[i].SetActive(true);
+                    emptyHearthContainers[i].SetActive(false);
+                }
+                for (int i = 6; i < 7; i++)
+                {
+                    hearthContainers[i].SetActive(false);
+                    emptyHearthContainers[i].SetActive(true);
+                }
+                break;
+
+            case 7:
+                for (int i = 0; i < 7; i++)
+                {
+                    hearthContainers[i].SetActive(true);
+                    emptyHearthContainers[i].SetActive(false);
+                }
+                for (int i = 7; i < 7; i++)
+                {
+                    hearthContainers[i].SetActive(false);
+                    emptyHearthContainers[i].SetActive(true);
+                }
+                break;
+
+
             default:
                 break;
+        }
+    }
+
+    public void UpdateContainers(int health)
+    {
+        for (int i = 0; i < health; i++)
+        {
+            containers[i].SetActive(true);
         }
     }
 
@@ -71,7 +153,7 @@ public class PlayerUICanvasHandler : MonoBehaviour
 
     public void RestartLevel()
     {
-        EditorSceneManager.LoadScene(EditorSceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void EnableWeaponAmmoUI(bool state)

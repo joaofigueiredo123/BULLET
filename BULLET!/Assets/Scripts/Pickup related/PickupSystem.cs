@@ -7,6 +7,7 @@ public class PickupSystem : MonoBehaviour
     PlayerUICanvasHandler playerUICanvas;
     PlayerMovement playerMovementScript;
     Weapon weaponReferenceScript;
+    Player playerScript;
     [SerializeField] private GameObject ak47;
     [SerializeField] private GameObject p90;
     [SerializeField] private GameObject hand;
@@ -15,6 +16,7 @@ public class PickupSystem : MonoBehaviour
 
     private void Start()
     {
+        playerScript = GameObject.Find("Player").GetComponent<Player>();
         playerMovementScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
         playerUICanvas = GameObject.Find("PlayerUICanvas").GetComponent<PlayerUICanvasHandler>();
     }
@@ -63,10 +65,10 @@ public class PickupSystem : MonoBehaviour
                     SetPowerup();
                 }
 
+                playerUICanvas.GetComponent<PowerupTimer>().timerOn = true;
                 Destroy(other.gameObject);
                 return;
             }
-
         }
     }
 
@@ -120,25 +122,32 @@ public class PickupSystem : MonoBehaviour
     IEnumerator FireratePowerup(float duration, int index)
     {
         weaponReferenceScript.firerateMultiplier = 1.5f;
-        yield return new WaitForSecondsRealtime(duration);
+        yield return new WaitForSeconds(duration);
         weaponReferenceScript.firerateMultiplier = 1.0f;
-        playerUICanvas.EnablePowerupUI(index, false);
+        if (!playerScript.isDead)
+        {
+            playerUICanvas.EnablePowerupUI(index, false);
+        }
     }
     IEnumerator SpeedPowerup(float duration, int index)
     {
         playerMovementScript.speedMultiplier = 1.70f;
-        yield return new WaitForSecondsRealtime(duration);
+        yield return new WaitForSeconds(duration);
         playerMovementScript.speedMultiplier = 1.0f;
-        playerUICanvas.EnablePowerupUI(index, false);
+        if (!playerScript.isDead)
+        {
+            playerUICanvas.EnablePowerupUI(index, false);
+        }
     }
 
     IEnumerator DamagePowerup(float duration, int index)
     {
         weaponReferenceScript.damageMultiplier = 2;
-        yield return new WaitForSecondsRealtime(duration);
+        yield return new WaitForSeconds(duration);
         weaponReferenceScript.damageMultiplier = 1;
-        playerUICanvas.EnablePowerupUI(index, false);
+        if (!playerScript.isDead)
+        {
+            playerUICanvas.EnablePowerupUI(index, false);
+        }
     }
-
-
 }

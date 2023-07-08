@@ -14,8 +14,8 @@ public class Weapon : MonoBehaviour
     AudioSource weaponSoundSource;
     [SerializeField] AudioClip weaponSoundClip, emptyMagSoundClip, reloadSoundClip;
     bool isReloading = false;
-    public int damageMultiplier;
-    public float firerateMultiplier;
+    public int damageMultiplier, damageUpgrade;
+    public float firerateMultiplier, firerateUpgrade;
     void Start()
     {
         damageMultiplier = 1;
@@ -26,6 +26,8 @@ public class Weapon : MonoBehaviour
         gameObject.name = weaponName;
         currentBulletCount = magSize;
         playerUICanvas.UpdateBulletCount(magSize, magSize);
+        damageUpgrade = GameObject.Find("DDOLIds").GetComponent<SaveIDs>().upgrade2_level;
+        firerateUpgrade = GameObject.Find("DDOLIds").GetComponent<SaveIDs>().upgrade4_level;
     }
     void Update()
     {
@@ -64,10 +66,10 @@ public class Weapon : MonoBehaviour
     void Fire()
     {
         StartCoroutine(PlayWeaponSound(weaponSoundClip));
-        fireRate = initialFireRate / firerateMultiplier;
+        fireRate = (initialFireRate / (1 + (firerateUpgrade * 0.05f))) / firerateMultiplier;
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         bullet.GetComponent<Rigidbody2D>().AddForce(transform.right * fireForce, ForceMode2D.Impulse);
-        bullet.GetComponent<Bullet>().damage = damage * damageMultiplier;
+        bullet.GetComponent<Bullet>().damage = (damage + (damageUpgrade * 1)) * damageMultiplier;
         currentBulletCount--;
         playerUICanvas.UpdateBulletCount(currentBulletCount, magSize);
 

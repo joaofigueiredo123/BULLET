@@ -8,6 +8,7 @@ public class MenuMusic : MonoBehaviour
     public static MenuMusic instance { get; private set; }
     AudioSource menuMusicAudioSource;
     public float volumeMultiplier, initialVolume;
+    public bool isPlaying = true;
     private void Awake()
     {
         if (instance != null)

@@ -10,13 +10,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector2 movement, jumpDirection;
     bool justJumped = false;
     bool facingRight = true;
-    [SerializeField] LayerMask plataformPlayerMask;
+    [SerializeField] LayerMask plataformPlayerMask, groundPlayerMask;
     Collider2D playerCollider;
     AudioSource playerAudio;
     [SerializeField] AudioClip playerJumpSound;
     Player playerInstance;
     Animator playerAnim;
-    [SerializeField] public float speedMultiplier = 1.0f;
+    [SerializeField] public float speedMultiplier = 1.0f, speedUpgrade;
 
     void Start()
     {
@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
             // Jump player
             if (justJumped)
             {
-                playerAudio.PlayOneShot(playerJumpSound, 0.6f);
+                playerAudio.PlayOneShot(playerJumpSound, 0.4f);
                 Jump(movement);
             }
         }
@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Move(Vector2 direction)
     {
-        playerRb.velocity = new Vector2(playerSpeed * direction.x * speedMultiplier * Time.deltaTime, playerRb.velocity.y);
+        playerRb.velocity = new Vector2(playerSpeed * direction.x * speedMultiplier * (1 + (speedUpgrade * 0.0515f)) * Time.deltaTime, playerRb.velocity.y);
 
     }
 
@@ -113,6 +113,10 @@ public class PlayerMovement : MonoBehaviour
     bool IsGrounded()
     {
         RaycastHit2D groundRayCast = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0f, Vector2.down, .1f, plataformPlayerMask);
+        if (groundRayCast.collider == null)
+        {
+            groundRayCast = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0f, Vector2.down, .1f, groundPlayerMask);
+        }
         return groundRayCast.collider != null;
     }
 }

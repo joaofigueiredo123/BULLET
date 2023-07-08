@@ -53,7 +53,7 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            movement = new Vector2(0,0);
+            enemyRb.velocity = new Vector2(0,0);
             enemyAnim.SetBool("isWalking", false);
         }
     }

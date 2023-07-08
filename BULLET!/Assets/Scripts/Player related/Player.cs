@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] int maxHealth, health;
     PlayerUICanvasHandler playerUI;
+    PowerupTimer powerupTimer;
     Rigidbody2D playerRb;
     Animator playerAnim;
     [SerializeField] AudioClip gameOverSound, damageSound;
@@ -21,7 +22,10 @@ public class Player : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody2D>();
         playerUI = GameObject.Find("PlayerUICanvas").GetComponent<PlayerUICanvasHandler>();
+        powerupTimer = GameObject.Find("PlayerUICanvas").GetComponent<PowerupTimer>();
+        maxHealth = 3 + GameObject.Find("DDOLIds").GetComponent<SaveIDs>().upgrade1_level;
         health = maxHealth;
+        playerUI.UpdateContainers(health);
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -35,12 +39,10 @@ public class Player : MonoBehaviour
 
             if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemyScript))
             {
-
                 StartCoroutine(TakeDamage(enemyScript.damage));
             }
         }
     }
-
     IEnumerator TakeDamage(int damageAmmount)
     {
         tookDamage = true;
@@ -64,14 +66,16 @@ public class Player : MonoBehaviour
         {
             playerSoundSource.PlayOneShot(gameOverSound, 0.8f);
         }
-        GetComponent<PlayerMovement>().enabled = false;
-        playerRb.velocity = Vector2.zero;
-        playerRb.angularVelocity = 0f;
         isDead = true;
+        GetComponent<PlayerMovement>().enabled = false;
+        playerRb.velocity = new Vector2(0,0);
+        playerRb.angularVelocity = 0f;
         playerAnim.SetBool("isDead", true);
+        powerupTimer.timerOn = false;
         playerUI.GameOver();
         Destroy(GameObject.Find("Hand"));
 
         HandleGameData.UpdateDeathStat(GameObject.Find("DDOLIds").GetComponent<SaveIDs>().savefileID, 1);
+        GetComponent<Player>().enabled = false;
     }
 }

@@ -24,12 +24,15 @@ public class CharacterMenuUIHandler : MonoBehaviour
 
     public void ConfirmPlayerName()
     {
-        savefileID = GameObject.Find("DDOLIds").GetComponent<SaveIDs>().savefileID;
-        characterID = GameObject.Find("DDOLIds").GetComponent<SaveIDs>().characterID;
-        playerName = GameObject.Find("PlayerName_InputField").GetComponent<TMP_InputField>().text;
-        HandleGameData.InsertSaveFileData(savefileID, characterID, playerName, 0, 0, 1);
-        HandleGameData.InsertStatistics(savefileID, 0, 0, 0, 0, 0);
-        HandleGameData.InsertUpgrades(savefileID, 0, 0, 0, 0);
-        UISceneHandler.SceneLevelMenu();
+        if (GameObject.Find("PlayerName_InputField").GetComponent<TMP_InputField>().text.Trim() != "")
+        {
+            savefileID = GameObject.Find("DDOLIds").GetComponent<SaveIDs>().savefileID;
+            characterID = GameObject.Find("DDOLIds").GetComponent<SaveIDs>().characterID;
+            playerName = GameObject.Find("PlayerName_InputField").GetComponent<TMP_InputField>().text;
+            HandleGameData.InsertSaveFileData(savefileID, characterID, playerName, 0, 0, 1);
+            HandleGameData.InsertStatistics(savefileID, 0, 0, 0, 0, 0);
+            HandleGameData.InsertUpgrades(savefileID, 0, 0, 0, 0);
+            UISceneHandler.SceneLevelMenu();
+        }
     }
 }

@@ -37,6 +37,7 @@ public class LevelSelectorHandler : MonoBehaviour
                 levelIcons[2].SetActive(false);
                 break;
             case 3:
+            default:
                 levelLockIcons[0].SetActive(false);
                 levelLockIcons[1].SetActive(false);
                 levelLockIcons[2].SetActive(false);

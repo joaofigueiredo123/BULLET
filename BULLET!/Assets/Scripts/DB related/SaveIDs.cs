@@ -8,6 +8,7 @@ public class SaveIDs : MonoBehaviour
     public int savefileID;
     public int characterID;
     public int level;
+    public int upgrade1_level, upgrade2_level, upgrade3_level, upgrade4_level;
 
     private void Awake()
     {

@@ -21,12 +21,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Statistics.unity
     guid: 7447869868e8a3740b5d5f56a1d6f23d
   - enabled: 1
+    path: Assets/Scenes/Upgrades.unity
+    guid: 118764a49e5849042be0e443bc0b6dec
+  - enabled: 1
     path: Assets/Scenes/Level Menu.unity
     guid: 87a1c7514e4b07d44bb8a081179106d5
   - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Upgrades.unity
-    guid: 118764a49e5849042be0e443bc0b6dec
+    path: Assets/Scenes/Level 2.unity
+    guid: 4a235f38cb569ea42a944f5fcab3b432
+  - enabled: 1
+    path: Assets/Scenes/Level 3.unity
+    guid: 72c37f3cdaa4950468a4e613b772e1e8
   m_configObjects: {}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5133185204398719316}
   - component: {fileID: -6044387469072525849}
   - component: {fileID: 5174570494211275730}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: spike2-grey
   m_TagString: Spike
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95c883addf7adc4989b1f3c283a8727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
+  damage: 200
 --- !u!60 &5174570494211275730
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -13,19 +13,22 @@ public class Bullet : MonoBehaviour
     {
         if ((transform.position.x < leftLimit) || (transform.position.x > rightLimit) || (transform.position.y < downLimit) || (transform.position.y > upLimit))
         {
-            Debug.Log("bullet went off boundries, destroying...");
             Destroy(gameObject);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.gameObject.TryGetComponent<EntryZone>(out EntryZone entryZone))
+        {
+            return;
+        }
+
         if (other.gameObject.TryGetComponent<Enemy>(out Enemy enemyScript))
         {
             enemyScript.TakeDamage(damage);
         }
 
-        Debug.Log("Bullet collided with " + other.gameObject.name);
         Destroy(gameObject);
     }
 

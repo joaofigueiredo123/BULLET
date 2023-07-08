@@ -1390,6 +1390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 285282372}
+  toggle: {fileID: 431455843}
   sliderText: {fileID: 2079913007}
 --- !u!1 &1285614689
 GameObject:

@@ -1471,17 +1471,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 874754429}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7321298, w: -0.68116516}
+  m_LocalRotation: {x: -0, y: -0, z: -0.52661896, w: -0.8501014}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.0022226695, y: 0.0022226695, z: 0.002222669}
+  m_LocalScale: {x: 0.003, y: 0.003, z: 0.003}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 265348134}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -265.87}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -296.445}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.1101074, y: -2.63}
+  m_AnchoredPosition: {x: 6.16, y: -2.43}
   m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &874754431
@@ -1504,7 +1504,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cdc00a686895d6a41b8ba077036ce75c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c03b082d27e7cea4497beb3e28088cde, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3594,17 +3594,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2044629397}
-  m_LocalRotation: {x: -0, y: -0, z: 0.65300655, w: -0.75735235}
+  m_LocalRotation: {x: -0, y: -0, z: -0.032009523, w: -0.99948764}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.0022226688, y: 0.0022226688, z: 0.002222669}
+  m_LocalScale: {x: 0.003, y: 0.003, z: 0.003}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 265348134}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -441.537}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -356.331}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.0559692, y: 2.9228058}
+  m_AnchoredPosition: {x: 2.11, y: 2.9228058}
   m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2044629399
@@ -3627,7 +3627,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cdc00a686895d6a41b8ba077036ce75c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c03b082d27e7cea4497beb3e28088cde, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

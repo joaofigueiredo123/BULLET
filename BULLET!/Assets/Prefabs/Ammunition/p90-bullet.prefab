@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   leftLimit: -75
-  rightLimit: 75
+  rightLimit: 125
   upLimit: 75
   downLimit: -75
 --- !u!50 &6866443351340455239
