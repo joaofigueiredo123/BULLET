@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector2 movement, jumpDirection;
     bool justJumped = false;
     bool facingRight = true;
-    [SerializeField] LayerMask plataformPlayerMask, groundPlayerMask;
+    [SerializeField] LayerMask plataformPlayerMask, groundPlayerMask, bossPlayerMask, zombiePlayerMask;
     Collider2D playerCollider;
     AudioSource playerAudio;
     [SerializeField] AudioClip playerJumpSound;
@@ -116,6 +116,14 @@ public class PlayerMovement : MonoBehaviour
         if (groundRayCast.collider == null)
         {
             groundRayCast = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0f, Vector2.down, .1f, groundPlayerMask);
+        }
+        if (groundRayCast.collider == null)
+        {
+            groundRayCast = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0f, Vector2.down, .1f, bossPlayerMask);
+        }
+        if (groundRayCast.collider == null)
+        {
+            groundRayCast = Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0f, Vector2.down, .1f, zombiePlayerMask);
         }
         return groundRayCast.collider != null;
     }

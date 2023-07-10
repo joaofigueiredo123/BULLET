@@ -11,26 +11,28 @@ public class End : MonoBehaviour
 {
     [SerializeField] int levelID;
     private static string dbPath = "URI=file:./gameDB.db";
-    int saveID;
+    int saveID, playerLevel;
+    PlayerUICanvasHandler playerUI;
     void Start()
     {
         saveID = GameObject.Find("DDOLIds").GetComponent<SaveIDs>().savefileID;
+        playerUI = GameObject.Find("PlayerUICanvas").GetComponent<PlayerUICanvasHandler>();
+        playerLevel = GetLevel(saveID);
     }
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.TryGetComponent<Player>(out Player player))
         {
-            Debug.Log("tá a tocar");
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKey(KeyCode.E))
             {
-                Debug.Log("wtfffasdasdasd");
-                if (GetLevel(saveID) == levelID)
+                if (playerLevel == levelID)
                 {
                     UpdateLevel(saveID, 1);
-                    GameObject.Find("DDOLIds").GetComponent<SaveIDs>().level = GetLevel(saveID);
+                    playerLevel = GetLevel(saveID);
+                    GameObject.Find("DDOLIds").GetComponent<SaveIDs>().level = playerLevel;
                 }
                 
-                UpgradesManager.UpdateBalance(saveID, GameObject.Find("PlayerUICanvas").GetComponent<PlayerUICanvasHandler>().coinCount);
+                UpgradesManager.UpdateBalance(saveID, playerUI.coinCount);
                 UISceneHandler.SceneLevelMenu();
             }
         }
@@ -45,7 +47,11 @@ public class End : MonoBehaviour
         query.CommandText = query_Level;
         IDataReader reader = query.ExecuteReader();
 
-        return Convert.ToInt16(reader[0]);
+        int level = Convert.ToInt16(reader[0]);
+
+        dbConnection.Close();
+
+        return level;
     }
     public static void UpdateLevel(int save_id, int amount)
     {

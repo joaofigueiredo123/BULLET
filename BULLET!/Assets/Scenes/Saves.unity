@@ -344,7 +344,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 2.9999998}
   m_SizeDelta: {x: 496, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &508247770
@@ -367,9 +367,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '- Jogo 4 -
-
-'
+  m_text: Iniciar novo jogo . . .
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a665727f0b2c5e44bbf0ab154527a4c7, type: 2}
   m_sharedMaterial: {fileID: -3827862233778580488, guid: a665727f0b2c5e44bbf0ab154527a4c7, type: 2}
@@ -667,7 +665,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 2.9999998}
   m_SizeDelta: {x: 496, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &691711483
@@ -690,7 +688,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '- Jogo 3 -'
+  m_text: Iniciar novo jogo . . .
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a665727f0b2c5e44bbf0ab154527a4c7, type: 2}
   m_sharedMaterial: {fileID: -3827862233778580488, guid: a665727f0b2c5e44bbf0ab154527a4c7, type: 2}
@@ -1035,7 +1033,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 3}
   m_SizeDelta: {x: 496, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1115686904
@@ -1058,7 +1056,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '- Jogo 2 -'
+  m_text: Iniciar novo jogo . . .
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a665727f0b2c5e44bbf0ab154527a4c7, type: 2}
   m_sharedMaterial: {fileID: -3827862233778580488, guid: a665727f0b2c5e44bbf0ab154527a4c7, type: 2}
@@ -1282,6 +1280,7 @@ GameObject:
   - component: {fileID: 1314871562}
   - component: {fileID: 1314871561}
   - component: {fileID: 1314871560}
+  - component: {fileID: 1314871564}
   m_Layer: 5
   m_Name: SavesCanvas
   m_TagString: Untagged
@@ -1376,6 +1375,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1314871564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314871559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98085867a52d3b845baec6af3a5a028e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonsText:
+  - {fileID: 2128091183}
+  - {fileID: 1115686904}
+  - {fileID: 691711483}
+  - {fileID: 508247770}
 --- !u!1 &1571921050
 GameObject:
   m_ObjectHideFlags: 0
@@ -1616,6 +1632,10 @@ MonoBehaviour:
   savefileID: 0
   characterID: 0
   level: 0
+  upgrade1_level: 0
+  upgrade2_level: 0
+  upgrade3_level: 0
+  upgrade4_level: 0
 --- !u!4 &1775947068
 Transform:
   m_ObjectHideFlags: 0
@@ -1959,7 +1979,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 2.9999998}
   m_SizeDelta: {x: 496, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2128091183
@@ -1982,7 +2002,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '- Jogo 1 -'
+  m_text: Iniciar novo jogo . . .
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a665727f0b2c5e44bbf0ab154527a4c7, type: 2}
   m_sharedMaterial: {fileID: -3827862233778580488, guid: a665727f0b2c5e44bbf0ab154527a4c7, type: 2}

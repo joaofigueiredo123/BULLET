@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 417753037109307568}
   - component: {fileID: 195481223928536575}
   - component: {fileID: 8609495525637033268}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 67335813025788642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 22.466677, y: 1.2644873, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angle: 0
-  speed: 2
+  speed: 1.35
   distanceTrigger: 10
 --- !u!95 &417753037109307568
 Animator:

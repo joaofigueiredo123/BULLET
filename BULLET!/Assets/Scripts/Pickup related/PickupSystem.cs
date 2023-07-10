@@ -10,6 +10,8 @@ public class PickupSystem : MonoBehaviour
     Player playerScript;
     [SerializeField] private GameObject ak47;
     [SerializeField] private GameObject p90;
+    [SerializeField] private GameObject colt;
+    [SerializeField] private GameObject win1873;
     [SerializeField] private GameObject hand;
     GameObject weaponPickedUp;
     [SerializeField] string currentWeapon = "";
@@ -41,6 +43,18 @@ public class PickupSystem : MonoBehaviour
                     Destroy(GameObject.Find("P90"));
                 }
 
+                if (GameObject.Find("COLT"))
+                {
+                    Debug.Log("existe colt na cena.");
+                    Destroy(GameObject.Find("COLT"));
+                }
+
+                if (GameObject.Find("WINCHESTER1873"))
+                {
+                    Debug.Log("existe winchester na cena.");
+                    Destroy(GameObject.Find("WINCHESTER1873"));
+                }
+
                 SetWeapon();
                 playerUICanvas.EnableWeaponAmmoUI(true);
                 Destroy(other.gameObject);
@@ -59,7 +73,7 @@ public class PickupSystem : MonoBehaviour
 
             if ((int)pickup.pickupType == 2)
             {
-                if (currentWeapon == "AK47" || currentWeapon == "P90")
+                if (currentWeapon == "AK47" || currentWeapon == "P90" || currentWeapon == "COLT" || currentWeapon == "WINCHESTER1873")
                 {
                     weaponReferenceScript = GameObject.Find(currentWeapon).GetComponent<Weapon>();
                     SetPowerup();
@@ -74,7 +88,7 @@ public class PickupSystem : MonoBehaviour
 
     void SetWeapon()
     {
-        int randomWeaponIndex = Random.Range(0, 2);
+        int randomWeaponIndex = Random.Range(0, 4);
 
         switch (randomWeaponIndex)
         {
@@ -86,6 +100,16 @@ public class PickupSystem : MonoBehaviour
             case 1:
                 currentWeapon = "P90";
                 GenerateWeapon(p90);
+                break;
+
+            case 2:
+                currentWeapon = "COLT";
+                GenerateWeapon(colt);
+                break;
+
+            case 3:
+                currentWeapon = "WINCHESTER1873";
+                GenerateWeapon(win1873);
                 break;
 
             default:

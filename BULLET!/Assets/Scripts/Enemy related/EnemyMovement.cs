@@ -10,6 +10,7 @@ public class EnemyMovement : MonoBehaviour
     Animator enemyAnim;
     Rigidbody2D enemyRb;
     Vector2 movement;
+    bool justRotated;
     void Start()
     {
         enemyRb = GetComponent<Rigidbody2D>();
@@ -43,8 +44,11 @@ public class EnemyMovement : MonoBehaviour
             {
                 enemyAnim.SetBool("isWalking", true);
                 enemyRb.velocity = movement * speed;
+                if (!justRotated)
+                {
+                    StartCoroutine(Rotate());
+                }
                 // transform.position = Vector3.MoveTowards(transform.position, new Vector3(playerReference.transform.position.x, transform.position.y, transform.position.z), speed * Time.deltaTime);
-                transform.rotation = Quaternion.Euler(Vector3.up * angle);
             }
             else
             {
@@ -53,8 +57,16 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            enemyRb.velocity = new Vector2(0,0);
+            enemyRb.velocity = new Vector2(0, 0);
             enemyAnim.SetBool("isWalking", false);
         }
+    }
+
+    IEnumerator Rotate()
+    {
+        justRotated = true;
+        transform.rotation = Quaternion.Euler(Vector3.up * angle);
+        yield return new WaitForSeconds(0.3f);
+        justRotated = false;
     }
 }

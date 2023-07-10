@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
         {
             Die();
         }
-        yield return new WaitForSecondsRealtime(2.10f);
+        yield return new WaitForSeconds(2.10f);
         tookDamage = false;
     }
 
@@ -70,6 +70,8 @@ public class Player : MonoBehaviour
         GetComponent<PlayerMovement>().enabled = false;
         playerRb.velocity = new Vector2(0,0);
         playerRb.angularVelocity = 0f;
+        playerRb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        playerRb.constraints = RigidbodyConstraints2D.FreezeRotation;
         playerAnim.SetBool("isDead", true);
         powerupTimer.timerOn = false;
         playerUI.GameOver();

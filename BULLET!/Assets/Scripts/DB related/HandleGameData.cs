@@ -270,14 +270,10 @@ public class HandleGameData : MonoBehaviour
 
         dbConnection.Close();
     }
-
-
-
     private static IDbConnection OpenConnection()
     {
         IDbConnection dbConnection = new SqliteConnection(dbPath);
         dbConnection.Open();
         return dbConnection;
     }
-
 }

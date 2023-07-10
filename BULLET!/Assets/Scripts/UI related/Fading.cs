@@ -22,9 +22,9 @@ public class Fading : MonoBehaviour
 
     IEnumerator PanelAnimation()
     {
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSeconds(0.2f);
         FadeInPanel();
-        yield return new WaitForSecondsRealtime(3.0f);
+        yield return new WaitForSeconds(2.0f);
         FadeOutPanel();
     }
 }
