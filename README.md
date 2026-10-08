@@ -40,13 +40,14 @@ Menus and some UI copy are in Portuguese.
 
 Gameplay scripts live under `BULLET!/Assets/Scripts/`.
 
-## How to play / open the project
+## How to play the game
+### Option 1 - Running the .exe
+1. Run BULLET!/Executável/BULLET!.exe
 
+### Option 2 - Opening the project on Unity Hub
 1. Install **Unity Hub** and **Unity 2021.3.18f1**.
 2. Add the `BULLET!` folder as a project and open it.
 3. Open `Assets/Scenes/MainMenu.unity` and press Play.
-
-A Windows player data folder is included under `BULLET!/Executável/`. It looks like an incomplete or leftover build (player data and `UnityPlayer.dll`, without a matching `.exe` in this tree). Opening the project in the Unity Editor is the reliable way to run it.
 
 On first launch, the game creates `gameDB.db` in the working directory (typically the project root when playing from the Editor).
 
